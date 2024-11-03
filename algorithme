@@ -1,4 +1,4 @@
-main :
+main : 
 
 DÉBUT
     DÉCLARER plateau comme tableau de taille SIZE x SIZE x 4
