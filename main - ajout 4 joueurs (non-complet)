@@ -283,60 +283,7 @@ void deplacerPion(char plateau[SIZE][SIZE][4], int *x, int *y, int direction, ch
     }
 }
 
-void deplacerBarriere(int *x, int *y, int direction, char joueur) {
-    int deltaX = 0, deltaY = 0;
 
-    if (joueur == PLAYER1) {
-        if (direction == 'z') {
-            deltaX = -1;
-        } else if (direction == 's') {
-            deltaX = 1;
-        } else if (direction == 'q') {
-            deltaY = -1;
-        } else if (direction == 'd') {
-            deltaY = 1;
-        }
-    } else if (joueur == PLAYER2) {
-        if (direction == 'U') {
-            deltaX = -1;
-        } else if (direction == 'D') {
-            deltaX = 1;
-        } else if (direction == 'L') {
-            deltaY = -1;
-        } else if (direction == 'R') {
-            deltaY = 1;
-        }
-    }
-
-    *x += deltaX;
-    *y += deltaY;
-
-    // Garder x et y dans les limites du plateau
-    if (*x < 1) *x = 1;
-    if (*x > SIZE - 3) *x = SIZE - 3; // Ajusté pour barrière de taille 4
-    if (*y < 1) *y = 1;
-    if (*y > SIZE - 3) *y = SIZE - 3; // Ajusté pour barrière de taille 4
-}
-
-void placerBarriere(char plateau[SIZE][SIZE][4], int x, int y, char orientation) {
-    if (orientation == 'V') {
-        if (x > 0 && x < SIZE - 3) {
-            // Placer une barrière verticale (sur quatre cases)
-            strcpy(plateau[x - 1][y], "|");
-            strcpy(plateau[x][y], "|");
-            strcpy(plateau[x + 1][y], "|");
-            strcpy(plateau[x + 2][y], "|");
-        }
-    } else if (orientation == 'H') {
-        if (y > 0 && y < SIZE - 3) {
-            // Placer une barrière horizontale (sur quatre cases)
-            strcpy(plateau[x][y - 1], "-");
-            strcpy(plateau[x][y], "-");
-            strcpy(plateau[x][y + 1], "-");
-            strcpy(plateau[x][y + 2], "-");
-        }
-    }
-}
 
 void nom(char* nomJoueur, int numeroJoueur) {
     printf("Choisir le nom du joueur %d : ", numeroJoueur);
@@ -365,6 +312,7 @@ int main() {
 
     SetConsoleOutputCP(CP_UTF8);
 #endif
+
     nom(nomJoueur1, 1);
     nom(nomJoueur2, 2);
     nom(nomJoueur3, 3);
