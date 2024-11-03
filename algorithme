@@ -199,28 +199,4 @@ DÉBUT HEADER
     ENTIER barrierY
     CARACTÈRE orientation ← 'V'  // Orientation initiale de la barrière
 
-    // Déclarations des fonctions
-
-    FONCTION initialiserPlateau(plateau : tableau[SIZE][SIZE][4])
-    // Initialise le plateau de jeu avec les bordures, intersections et cases vides.
-
-    FONCTION afficherPlateau(plateau : tableau[SIZE][SIZE][4], barrierX : entier, barrierY : entier, 
-                             modePlacement1 : entier, modePlacement2 : entier, orientation : caractère)
-    // Affiche l’état actuel du plateau de jeu, y compris les pions et barrières.
-
-    FONCTION lireTouche() : entier
-    // Lit et retourne la touche pressée par l’utilisateur.
-
-    FONCTION barriereEntre(x1 : entier, y1 : entier, x2 : entier, y2 : entier, plateau : tableau[SIZE][SIZE][4]) : entier
-    // Vérifie s’il y a une barrière entre deux positions sur le plateau.
-
-    FONCTION deplacerPion(plateau : tableau[SIZE][SIZE][4], x : entier, y : entier, direction : entier, joueur : caractère)
-    // Déplace le pion d’un joueur dans la direction spécifiée, si aucun obstacle n’est présent.
-
-    FONCTION deplacerBarriere(x : entier, y : entier, direction : entier, joueur : caractère)
-    // Déplace la position temporaire d’une barrière pendant le placement.
-
-    FONCTION placerBarriere(plateau : tableau[SIZE][SIZE][4], x : entier, y : entier, orientation : caractère)
-    // Place une barrière définitive sur le plateau, selon l’orientation et la position choisies.
-
-FIN HEADER
+  
