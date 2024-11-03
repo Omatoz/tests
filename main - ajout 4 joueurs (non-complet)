@@ -363,8 +363,38 @@ int main() {
     dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
     SetConsoleMode(hOut, dwMode);
 
+    SetConsoleOutputCP(CP_UTF8);
+#endif
+    nom(nomJoueur1, 1);
+    nom(nomJoueur2, 2);
+    nom(nomJoueur3, 3);
+    nom(nomJoueur4, 4);
+    initialiserPlateau(plateau);
+    strcpy(plateau[x1][y1], "1");
+    strcpy(plateau[x2][y2], "2");
+    strcpy(plateau[x3][y3], "3");
+    strcpy(plateau[x4][y4], "4");
 
+    while (1) {
+        system("cls"); // Pour Windows
+        // system("clear"); // Pour Unix/Linux
 
+        afficherPlateau(plateau, barrierX, barrierY, modePlacement1, modePlacement2, orientation);
+        int input;
+        printf("c'est au joueur %d de jouer.\n, tour);
+        if (tour==1) {
+            if (modePlacement1 == 0) {
+                printf("Appuyez sur 'a' pour placer une barrière ou déplacez votre pion avec z/q/s/d.\n");
+            } else {
+                printf("Déplacez la barrière avec z/q/s/d, changez l'orientation avec 'o' et appuyez sur Entrée pour la placer.\n");
+            }
+        } else if (tour == 2) {
+            if (modePlacement2 == 0) {
+                printf("Appuyez sur 'p' pour placer une barrière ou déplacez votre pion avec les flèches.\n");
+            } else {
+                printf("Déplacez la barrière avec les flèches, changez l'orientation avec 'O' et appuyez sur Entrée pour la placer.\n");
+            }
+        }
 
         input = lireTouche();
         // printf("Input: %d\n", input); // Décommentez pour le débogage
