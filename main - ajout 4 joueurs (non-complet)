@@ -32,6 +32,8 @@
 // Variables globales pour le placement des barrières
 int modePlacement1 = 0;
 int modePlacement2 = 0;
+int modePlacement3 = 0;
+int modePlacement4 = 0;
 int barrierX, barrierY;
 char orientation = 'V'; // Orientation par défaut de la barrière
 
@@ -67,7 +69,7 @@ void initialiserPlateau(char plateau[SIZE][SIZE][4]) {
     }
 }
 
-void afficherPlateau(char plateau[SIZE][SIZE][4], int barrierX, int barrierY, int modePlacement1, int modePlacement2, char orientation) {
+void afficherPlateau(char plateau[SIZE][SIZE][4], int barrierX, int barrierY, int modePlacement1, int modePlacement2, int modePlacement3, int modePlacement4, char orientation) {
 #ifdef _WIN32
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 #endif
@@ -78,7 +80,7 @@ void afficherPlateau(char plateau[SIZE][SIZE][4], int barrierX, int barrierY, in
             int isBarrierTemp = 0;
 
             // Afficher la barrière temporaire si le joueur est en mode placement
-            if ((modePlacement1 || modePlacement2)) {
+            if ((modePlacement1 || modePlacement2 || modePlacement3 || modePlacement4)) {
                 if (orientation == 'V') {
                     if ((i == barrierX - 1 || i == barrierX || i == barrierX + 1 || i == barrierX + 2) && j == barrierY) {
                         isBarrierTemp = 1;
