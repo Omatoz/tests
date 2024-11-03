@@ -17,8 +17,6 @@
 #define SIZE 19
 #define PLAYER1 '1'
 #define PLAYER2 '2'
-#define PLAYER3 '3'
-#define PLAYER4 '4'
 
 // Caractères de dessin de boîte
 #define VERTICAL_LINE   "║"
@@ -32,8 +30,6 @@
 // Variables globales pour le placement des barrières
 int modePlacement1 = 0;
 int modePlacement2 = 0;
-int modePlacement4 = 0;
-int modePlacement4 = 0;
 int barrierX, barrierY;
 char orientation = 'V'; // Orientation par défaut de la barrière
 
@@ -69,7 +65,7 @@ void initialiserPlateau(char plateau[SIZE][SIZE][4]) {
     }
 }
 
-void afficherPlateau(char plateau[SIZE][SIZE][4], int barrierX, int barrierY, int modePlacement1, int modePlacement2, int modePlacement3, int modePlacement4, char orientation) {
+void afficherPlateau(char plateau[SIZE][SIZE][4], int barrierX, int barrierY, int modePlacement1, int modePlacement2, char orientation) {
 #ifdef _WIN32
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 #endif
@@ -80,7 +76,7 @@ void afficherPlateau(char plateau[SIZE][SIZE][4], int barrierX, int barrierY, in
             int isBarrierTemp = 0;
 
             // Afficher la barrière temporaire si le joueur est en mode placement
-            if ((modePlacement1 || modePlacement2 || modePlacement3 || modePlacement4)) {
+            if ((modePlacement1 || modePlacement2)) {
                 if (orientation == 'V') {
                     if ((i == barrierX - 1 || i == barrierX || i == barrierX + 1 || i == barrierX + 2) && j == barrierY) {
                         isBarrierTemp = 1;
@@ -108,23 +104,6 @@ void afficherPlateau(char plateau[SIZE][SIZE][4], int barrierX, int barrierY, in
 #else
                 printf("\033[31mo\033[0m ");
 
-#endif
-            } else if (strcmp(c, "3") == 0) {
-#ifdef _WIN32
-                SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
-                printf("o ");
-                SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
-#else
-                printf("\033[32mo\033[0m ");
-
-#endif
-            } else if (strcmp(c, "4") == 0) {
-#ifdef _WIN32
-                SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-                printf("o ");
-                SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
-#else
-                printf("\033[33mo\033[0m ");
 #endif
             } else if (strcmp(c, "|") == 0 || strcmp(c, "-") == 0) {
 #ifdef _WIN32
