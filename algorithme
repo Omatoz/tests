@@ -1,10 +1,3 @@
-main :
-
-DÉBUT
-    DÉCLARER plateau comme tableau de taille SIZE x SIZE x 4
-    ENTIER x1 ← 1, y1 ← 9
-    ENTIER x2 ← SIZE - 2, y2 ← 9
-    ENTIER tour ← 1
 
     SI le système est Windows ALORS
         Configurer l'affichage pour les caractères spéciaux et les couleurs
