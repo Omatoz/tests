@@ -21,6 +21,7 @@
 #define PLAYER4 '4'
 
 // Caractères de dessin de boîte
+
 #define VERTICAL_LINE   "║"
 #define HORIZONTAL_LINE "═"
 #define TOP_LEFT_CORNER     "╔"
@@ -29,7 +30,8 @@
 #define BOTTOM_RIGHT_CORNER "╝"
 #define INTERSECTION    "╬"
 
-// Variables globales pour le placement des barrières
+//Variables globales pour le placement des barrières
+
 int modePlacement1 = 0;
 int modePlacement2 = 0;
 int modePlacement3 = 0;
@@ -70,6 +72,7 @@ void initialiserPlateau(char plateau[SIZE][SIZE][4]) {
 }
 
 void afficherPlateau(char plateau[SIZE][SIZE][4], int barrierX, int barrierY, int modePlacement1, int modePlacement2, int modePlacement3, int modePlacement4, char orientation) {
+
 #ifdef _WIN32
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 #endif
@@ -397,6 +400,7 @@ int main() {
             }
         }
 
+    
         input = lireTouche();
         // printf("Input: %d\n", input); // Décommentez pour le débogage
 
