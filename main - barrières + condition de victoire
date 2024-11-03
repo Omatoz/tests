@@ -107,6 +107,24 @@ void afficherPlateau(char plateau[SIZE][SIZE][4], int barrierX, int barrierY, in
                 SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 #else
                 printf("\033[31mo\033[0m ");
+
+#endif
+            } else if (strcmp(c, "3") == 0) {
+#ifdef _WIN32
+                SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
+                printf("o ");
+                SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+#else
+                printf("\033[32mo\033[0m ");
+
+#endif
+            } else if (strcmp(c, "4") == 0) {
+#ifdef _WIN32
+                SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+                printf("o ");
+                SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+#else
+                printf("\033[33mo\033[0m ");
 #endif
             } else if (strcmp(c, "|") == 0 || strcmp(c, "-") == 0) {
 #ifdef _WIN32
@@ -190,9 +208,9 @@ int lireTouche() {
 }
 #endif
 
-int barriereEntre(int x1, int y1, int x2, int y2, char plateau[SIZE][SIZE][4]) {
-    int midX = (x1 + x2) / 2;
-    int midY = (y1 + y2) / 2;
+int barriereEntre(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, char plateau[SIZE][SIZE][4]) {
+    int midX = (x1 + x2 + x3 + x4) / 2;
+    int midY = (y1 + y2 + y3 + y4) / 2;
     if (strcmp(plateau[midX][midY], "|") == 0 || strcmp(plateau[midX][midY], "-") == 0) {
         return 1;
     }
@@ -222,6 +240,30 @@ void deplacerPion(char plateau[SIZE][SIZE][4], int *x, int *y, int direction, ch
         } else if (direction == 'L' && *y > 1) {
             newY -= 2;
         } else if (direction == 'R' && *y < SIZE - 2) {
+            newY += 2;
+        } else {
+            return;
+        }
+    } else if (joueur == PLAYER3) {
+        if (direction == 't' && *x > 1) {
+            newX -= 2;
+        } else if (direction == 'g' && *x < SIZE - 2) {
+            newX += 2;
+        } else if (direction == 'f' && *y > 1) {
+            newY -= 2;
+        } else if (direction == 'h' && *y < SIZE - 2) {
+            newY += 2;
+        } else {
+            return;
+        }
+    } else if (joueur == PLAYER4) {
+        if (direction == 'i' && *x > 1) {
+            newX -= 2;
+        } else if (direction == 'k' && *x < SIZE - 2) {
+            newX += 2;
+        } else if (direction == 'j' && *y > 1) {
+            newY -= 2;
+        } else if (direction == 'l' && *y < SIZE - 2) {
             newY += 2;
         } else {
             return;
