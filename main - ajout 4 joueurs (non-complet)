@@ -384,8 +384,8 @@ int main() {
         afficherPlateau(plateau, barrierX, barrierY, modePlacement1, modePlacement2, orientation);
 
         int input;
-        printf("C'est au joueur %d de jouer.\n", tour);
-        if (tour == 1) {
+        printf("c'est au joueur %d de jouer.\n, tour);
+        if (tour==1) {
             if (modePlacement1 == 0) {
                 printf("Appuyez sur 'a' pour placer une barrière ou déplacez votre pion avec z/q/s/d.\n");
             } else {
