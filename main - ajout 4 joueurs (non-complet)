@@ -341,15 +341,6 @@ void placerBarriere(char plateau[SIZE][SIZE][4], int x, int y, char orientation)
     }
 }
 
-void nom(char* nomJoueur, int numeroJoueur) {
-    printf("Choisir le nom du joueur %d : ", numeroJoueur);
-    fgets(nomJoueur, numeroJoueur, stdin);
-    size_t len = strlen(nomJoueur);
-    if (len > 0 && nomJoueur[len - 1] == '\n') {
-        nomJoueur[len - 1] = '\0';
-    }
-}
-
 int main() {
     char plateau[SIZE][SIZE][4];
     int x1 = 1, y1 = 9; // Position de départ du joueur 1 (colonne centrale)
@@ -357,7 +348,6 @@ int main() {
     int x3 = 9, y3 = 1; // Position de départ du joueur 3 (colonne gauche)
     int x4 = 9, y4 = SIZE - 2; // Position de départ du joueur 4 (colonne droite)
     int tour = 1;
-    char nomJoueur1[50], nomJoueur2[50], nomJoueur3[50], nomJoueur4[50];
 
 #ifdef _WIN32
     HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -369,10 +359,6 @@ int main() {
     SetConsoleOutputCP(CP_UTF8);
 #endif
 
-    nom(nomJoueur1, 1);
-    nom(nomJoueur2, 2);
-    nom(nomJoueur3, 3);
-    nom(nomJoueur4, 4);
     initialiserPlateau(plateau);
     strcpy(plateau[x1][y1], "1");
     strcpy(plateau[x2][y2], "2");
