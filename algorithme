@@ -219,7 +219,7 @@ DÉBUT HEADER
     // Déplace le pion d’un joueur dans la direction spécifiée, si aucun obstacle n’est présent.
 
     FONCTION deplacerBarriere(x : entier, y : entier, direction : entier, joueur : caractère)
-    // Déplace la position temporaire d’une barrière pendant le placement.
+    // Déplace la position temporaire d'une barrière pendant le placement.
 
     FONCTION placerBarriere(plateau : tableau[SIZE][SIZE][4], x : entier, y : entier, orientation : caractère)
     // Place une barrière définitive sur le plateau, selon l’orientation et la position choisies.
