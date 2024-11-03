@@ -1,3 +1,5 @@
 ///Programme principal
 ///     -> Sous-programme Joueurs
-///     
+///     -> Sous-programme Plateau
+///     -> Sous-programme Barrières 
+///     -> Sous-programme Score
