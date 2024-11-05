@@ -21,6 +21,8 @@
 #define SIZE 19
 #define PLAYER1 '1'
 #define PLAYER2 '2'
+#define PLAYER3 '3'
+#define PLAYER4 '4'
 
 // Caractères de dessin de boîte
 #define VERTICAL_LINE   "║"
@@ -35,6 +37,8 @@
 typedef struct {
     int modePlacement1;
     int modePlacement2;
+    int modePlacement3;
+    int modePlacement4;
     int barrierX;
     int barrierY;
     char orientation;
