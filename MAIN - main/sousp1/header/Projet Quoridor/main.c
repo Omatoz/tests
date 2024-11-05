@@ -181,7 +181,7 @@ int main() {
                     system("cls"); // Pour Windows
                     // system("clear"); // Pour Unix/Linux
                     afficherPlateau(plateau, barrierX, barrierY, modePlacement1, modePlacement2, modePlacement3, modePlacement4,orientation);
-                    printf("Le joueur 3 a gagné !\n");
+                    printf("Le joueur 4 a gagné !\n");
                     break;
                 }
                 tour = 1;
