@@ -41,7 +41,7 @@ void afficherPlateau(char plateau[SIZE][SIZE][4], GameState *state) {
             char *c = plateau[i][j];
             int isBarrierTemp = 0;
 
-            if ((state->modePlacement1 || state->modePlacement2)) {
+            if ((state->modePlacement1 || state->modePlacement2 || state->modePlacement3 || state->modePlacement4)) {
                 if (state->orientation == 'V') {
                     if ((i == state->barrierX - 1 || i == state->barrierX || i == state->barrierX + 1 || i == state->barrierX + 2) && j == state->barrierY) {
                         isBarrierTemp = 1;
@@ -68,6 +68,22 @@ void afficherPlateau(char plateau[SIZE][SIZE][4], GameState *state) {
                 SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 #else
                 printf("\033[31mo\033[0m ");
+#endif
+            } else if (strcmp(c, "3") == 0) {
+#ifdef _WIN32
+                SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN);
+                printf("o ");
+                SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+#else
+                printf("\033[32mo\033[0m ");
+#endif
+            } else if (strcmp(c, "4") == 0) {
+#ifdef _WIN32
+                SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+                printf("o ");
+                SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+#else
+                printf("\033[33mo\033[0m ");
 #endif
             } else if (strcmp(c, "|") == 0 || strcmp(c, "-") == 0) {
 #ifdef _WIN32
@@ -169,6 +185,30 @@ void deplacerPion(char plateau[SIZE][SIZE][4], int *x, int *y, int direction, ch
         } else {
             return;
         }
+    } else if (joueur == PLAYER3) {
+        if (direction == 't' && *x > 1) {
+            newX -= 2;
+        } else if (direction == 'g' && *x < SIZE - 2) {
+            newX += 2;
+        } else if (direction == 'f' && *y > 1) {
+            newY -= 2;
+        } else if (direction == 'h' && *y < SIZE - 2) {
+            newY += 2;
+        } else {
+            return;
+        }
+    } else if (joueur == PLAYER4) {
+        if (direction == 'i' && *x > 1) {
+            newX -= 2;
+        } else if (direction == 'k' && *x < SIZE - 2) {
+            newX += 2;
+        } else if (direction == 'j' && *y > 1) {
+            newY -= 2;
+        } else if (direction == 'l' && *y < SIZE - 2) {
+            newY += 2;
+        } else {
+            return;
+        }
     }
 
     if (barriereEntre(*x, *y, newX, newY, plateau)) {
@@ -207,15 +247,36 @@ void deplacerBarriere(int *x, int *y, int direction, char joueur, GameState *sta
         } else if (direction == 'R') {
             deltaY = 1;
         }
+    } else if (joueur == PLAYER3) {
+        if (direction == 't') {
+            deltaX = -1;
+        } else if (direction == 'g') {
+            deltaX = 1;
+        } else if (direction == 'f') {
+            deltaY = -1;
+        } else if (direction == 'h') {
+            deltaY = 1;
+        }
+    } else if (joueur == PLAYER4) {
+        if (direction == 'i') {
+            deltaX = -1;
+        } else if (direction == 'k') {
+            deltaX = 1;
+        } else if (direction == 'j') {
+            deltaY = -1;
+        } else if (direction == 'l') {
+            deltaY = 1;
+        }
     }
 
     *x += deltaX;
     *y += deltaY;
 
+    // Garder x et y dans les limites du plateau
     if (*x < 1) *x = 1;
-    if (*x > SIZE - 3) *x = SIZE - 3;
+    if (*x > SIZE - 3) *x = SIZE - 3; // Ajusté pour barrière de taille 4
     if (*y < 1) *y = 1;
-    if (*y > SIZE - 3) *y = SIZE - 3;
+    if (*y > SIZE - 3) *y = SIZE - 3; // Ajusté pour barrière de taille 4
 }
 
 void placerBarriere(char plateau[SIZE][SIZE][4], int x, int y, char orientation) {
