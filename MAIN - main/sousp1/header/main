@@ -8,7 +8,7 @@ int main() {
     int x3 = 9, y3 = 1; // Position de départ du joueur 3 (colonne gauche)
     int x4 = 9, y4 = SIZE - 2; // Position de départ du joueur 4 (colonne droite)
     int tour = 1;
-    GameState state = {0, 0, 0, 0, 'V'};
+    GameState state = {0, 0, 0, 0, 0, 0, 'V'};
 
 #ifdef _WIN32
     HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
