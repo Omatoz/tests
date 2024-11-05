@@ -5,6 +5,8 @@ int main() {
     char plateau[SIZE][SIZE][4];
     int x1 = 1, y1 = 9; // Position de départ du joueur 1 (colonne centrale)
     int x2 = SIZE - 2, y2 = 9; // Position de départ du joueur 2 (colonne centrale)
+    int x3 = 9, y3 = 1; // Position de départ du joueur 3 (colonne gauche)
+    int x4 = 9, y4 = SIZE - 2; // Position de départ du joueur 4 (colonne droite)
     int tour = 1;
     GameState state = {0, 0, 0, 0, 'V'};
 
@@ -21,6 +23,8 @@ int main() {
     initialiserPlateau(plateau);
     strcpy(plateau[x1][y1], "1");
     strcpy(plateau[x2][y2], "2");
+    strcpy(plateau[x3][y3], "3");
+    strcpy(plateau[x4][y4], "4");
 
     while (1) {
         system("cls"); // Pour Windows
@@ -41,6 +45,18 @@ int main() {
                 printf("Appuyez sur 'p' pour placer une barrière ou déplacez votre pion avec les flèches.\n");
             } else {
                 printf("Déplacez la barrière avec les flèches, changez l'orientation avec 'O' et appuyez sur Entrée pour la placer.\n");
+            }
+        } else if (tour == 3) {
+            if (state.modePlacement3 == 0) {
+                printf("Appuyez sur 'w' pour placer une barrière ou déplacez votre pion avec t/f/g/h.\n");
+            } else {
+                printf("Déplacez la barrière avec t/f/g/h, changez l'orientation avec 'm' et appuyez sur Entrée pour la placer.\n");
+            }
+        } else if (tour == 4) {
+            if (state.modePlacement4 == 0) {
+                printf("Appuyez sur 'n' pour placer une barrière ou déplacez votre pion avec i/j/k/l.\n");
+            } else {
+                printf("Déplacez la barrière avec i/j/k/l, changez l'orientation avec 'M' et appuyez sur Entrée pour la placer.\n");
             }
         }
 
@@ -74,7 +90,7 @@ int main() {
 
                 tour = 2;
             }
-        } else {
+        } else if (tour == 2){
             if (input == 'p' && state.modePlacement2 == 0) {
                 state.modePlacement2 = 1;
                 state.barrierX = x2;
@@ -84,7 +100,7 @@ int main() {
                 if (input == 13 || input == '\n') { // Touche Entrée
                     placerBarriere(plateau, state.barrierX, state.barrierY, state.orientation);
                     state.modePlacement2 = 0;
-                    tour = 1;
+                    tour = 3;
                 } else if (input == 'O') {
                     state.orientation = (state.orientation == 'V') ? 'H' : 'V';
                 } else {
@@ -100,6 +116,61 @@ int main() {
                     break;
                 }
 
+                tour = 3;
+            }
+        } else if (tour == 3){
+            if (input == 'w' && state.modePlacement3 == 0) {
+                state.modePlacement3 = 1;
+                state.barrierX = x3;
+                state.barrierY = y3;
+                state.orientation = 'V';
+            } else if (state.modePlacement3 == 1) {
+                if (input == 13 || input == '\n') { // Touche Entrée
+                    placerBarriere(plateau, state.barrierX, state.barrierY, state.orientation);
+                    state.modePlacement3 = 0;
+                    tour = 4;
+                } else if (input == 'm') {
+                    state.orientation = (state.orientation == 'V') ? 'H' : 'V';
+                } else {
+                    deplacerBarriere(&state.barrierX, &state.barrierY, input, PLAYER3, &state);
+                }
+            } else {
+                deplacerPion(plateau, &x3, &y3, input, PLAYER3);
+
+                if (x3 == 1) {
+                    system("cls"); // Pour Windows
+                    afficherPlateau(plateau, &state);
+                    printf("Le joueur 3 a gagné !\n");
+                    break;
+                }
+
+                tour = 4;
+            }
+        } else if (tour == 4){
+            if (input == 'n' && state.modePlacement4 == 0) {
+                state.modePlacement4 = 1;
+                state.barrierX = x4;
+                state.barrierY = y4;
+                state.orientation = 'V';
+            } else if (state.modePlacement4 == 1) {
+                if (input == 13 || input == '\n') { // Touche Entrée
+                    placerBarriere(plateau, state.barrierX, state.barrierY, state.orientation);
+                    state.modePlacement4 = 0;
+                    tour = 1;
+                } else if (input == 'M') {
+                    state.orientation = (state.orientation == 'V') ? 'H' : 'V';
+                } else {
+                    deplacerBarriere(&state.barrierX, &state.barrierY, input, PLAYER4, &state);
+                }
+            } else {
+                deplacerPion(plateau, &x4, &y4, input, PLAYER4);
+
+                if (x4 == 1) {
+                    system("cls"); // Pour Windows
+                    afficherPlateau(plateau, &state);
+                    printf("Le joueur 4 a gagné !\n");
+                    break;
+                }
                 tour = 1;
             }
         }
