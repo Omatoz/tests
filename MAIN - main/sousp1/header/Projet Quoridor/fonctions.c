@@ -328,12 +328,3 @@ void placerBarriere(char plateau[SIZE][SIZE][4], int x, int y, char orientation)
         }
     }
 }
-
-void nom(char* nomJoueur, int numeroJoueur) {
-    printf("Choisir le nom du joueur %d : ", numeroJoueur);
-    fgets(nomJoueur, numeroJoueur, stdin);
-    size_t len = strlen(nomJoueur);
-    if (len > 0 && nomJoueur[len - 1] == '\n') {
-        nomJoueur[len - 1] = '\0';
-    }
-}
