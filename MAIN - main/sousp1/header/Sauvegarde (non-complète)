@@ -1,0 +1,54 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "header.h"
+
+typedef struct {
+    int x, y;
+    int NbBarrieres;
+} Joueurs;
+
+typedef struct {
+    int barriereH[9][9];
+    int barriereV[9][9];
+} Barrieres;
+
+typedef struct {
+    Joueurs joueur1;
+    Joueurs joueur2;
+    Joueurs joueur3;
+    Joueurs joueur4;
+    Barrieres barrieres;
+}Sauvegarde;
+
+void SauvegardePartie(Sauvegarde *s, const char *File)
+{
+    FILE *f = fopen(File, "wb");
+    if (f == NULL) {
+        printf("Erreur, le fichier ne peut pas être ouvert !\n");
+        return;
+    }
+    fwrite(s, sizeof(Sauvegarde), 1, f);
+    fclose(f);
+    printf("La partie est sauvegardée");
+}
+
+void PartieCharge(Sauvegarde *s, const char *File)
+{
+    FILE *f = fopen(File, "rb");
+    if (f == NULL) {
+        printf("Erreur, le fichier ne peut pas être ouvert !\n");
+        return;
+    }
+    fread(s, sizeof(Sauvegarde), 1, f);
+    fclose(f);
+    printf("La partie est chargée");
+}
+
+
+/*
+Sauvegarde sauvegardeQuorridor;
+
+SauvegardePartie(&sauvegardeQuorridor, "sauvegardeQuorridor.txt");
+PartieCharge(&sauvegardeQuorridor, "sauvegardeQuorridor.txt");
+*/
