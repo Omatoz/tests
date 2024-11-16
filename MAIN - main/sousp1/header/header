@@ -15,7 +15,8 @@
 
 #else
 #include <termios.h>
-#include <unistd.h>
+    #include <unistd.h>
+    #include <fcntl.h>
 #endif
 
 #define SIZE 19
@@ -25,13 +26,13 @@
 #define PLAYER4 '4'
 
 // Caractères de dessin de boîte
-#define VERTICAL_LINE   "║"
-#define HORIZONTAL_LINE "═"
-#define TOP_LEFT_CORNER "╔"
-#define TOP_RIGHT_CORNER "╗"
-#define BOTTOM_LEFT_CORNER "╚"
+#define VERTICAL_LINE       "║"
+#define HORIZONTAL_LINE     "═"
+#define TOP_LEFT_CORNER     "╔"
+#define TOP_RIGHT_CORNER    "╗"
+#define BOTTOM_LEFT_CORNER  "╚"
 #define BOTTOM_RIGHT_CORNER "╝"
-#define INTERSECTION    "╬"
+#define INTERSECTION        "╬"
 
 // Structure pour l'état de jeu
 typedef struct {
@@ -48,9 +49,26 @@ typedef struct {
 void initialiserPlateau(char plateau[SIZE][SIZE][4]);
 void afficherPlateau(char plateau[SIZE][SIZE][4], GameState *state);
 int lireTouche();
-int barriereEntre(int x1, int y1, int x2, int y2, char plateau[SIZE][SIZE][4]);
-void deplacerPion(char plateau[SIZE][SIZE][4], int *x, int *y, int direction, char joueur);
-void deplacerBarriere(int *x, int *y, int direction, char joueur, GameState *state);
-void placerBarriere(char plateau[SIZE][SIZE][4], int x, int y, char orientation);
+void clearConsole();
+int barriereEntre(int x1, int y1, int x2, int y2,
+                  char plateau[SIZE][SIZE][4]);
+void deplacerPion(char plateau[SIZE][SIZE][4], int *x, int *y,
+                  int direction, char joueur);
+void deplacerBarriere(int *x, int *y, int direction, char joueur,
+                      GameState *state);
+void placerBarriere(char plateau[SIZE][SIZE][4], int x, int y,
+                    char orientation);
+void afficherEcranVictoire(int joueur);
+void sauvegarderPartie(const char *nomFichier,
+                       char plateau[SIZE][SIZE][4], int x1, int y1, int x2, int y2,
+                       int x3, int y3, int x4, int y4, int tour, int GameMode,
+                       GameState *state);
+void chargerPartie(const char *nomFichier,
+                   char plateau[SIZE][SIZE][4], int *x1, int *y1, int *x2, int *y2,
+                   int *x3, int *y3, int *x4, int *y4, int *tour, int *GameMode,
+                   GameState *state);
+void initialiserDemo(char plateau[SIZE][SIZE][4], int *x1, int *y1,
+                     int *x2, int *y2, int *x3, int *y3, int *x4, int *y4,
+                     int *tour, int *GameMode, GameState *state);
 
 #endif // HEADER_H
