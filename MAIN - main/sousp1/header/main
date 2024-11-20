@@ -8,7 +8,7 @@ int main() {
     int GameMode;
     GameState state;
 
-srand(time(NULL));
+    srand(time(NULL));
 #ifdef _WIN32
     HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
     DWORD dwMode = 0;
@@ -20,11 +20,20 @@ srand(time(NULL));
 #endif
 
     int choix = 0;
-    printf("\n MENU \n");
-    printf("0: Commencer une nouvelle partie\n");
+    printf("   *******      **     **     *******     *******     **   *******       *******     *******  \n");
+    printf("  **/////**    /**    /**    **/////**   /**////**   /**  /**////**     **/////**   /**////** \n");
+    printf(" **     //**   /**    /**   **     //**  /**   /**   /**  /**    /**   **     //**  /**   /** \n");
+    printf("/**      /**   /**    /**  /**      /**  /*******    /**  /**    /**  /**      /**  /*******  \n");
+    printf("/**    **/**   /**    /**  /**      /**  /**///**    /**  /**    /**  /**      /**  /**///**  \n");
+    printf("//**  // **    /**    /**  //**     **   /**  //**   /**  /**    **   //**     **   /**  //** \n");
+    printf(" //******* **  //*******    //*******    /**   //**  /**  /*******     //*******    /**   //**\n");
+    printf("  /////// //    ///////      ///////     //     //   //   ///////       ///////     //     // \n");
+    printf("\n");
+    printf("\n");
+    printf("Choisissez une option :\n");
     printf("1: Charger une partie sauvegardée\n");
     printf("2: Charger la partie de démonstration\n");
-    printf("3: Quitter\n");
+    printf("0: Commencer une nouvelle partie\n");
     printf("Votre choix : ");
     scanf("%d", &choix);
 
@@ -38,9 +47,7 @@ srand(time(NULL));
     } else if (choix == 2) {
         initialiserDemo(plateau, &x1, &y1, &x2, &y2,
                         &x3, &y3, &x4, &y4, &tour, &GameMode, &state);
-    } else if (choix == 3) {
-        exit(0);
-    } else if (choix == 0) {
+    } else {
         // Initialisation des variables pour une nouvelle partie
         x1 = 1; y1 = SIZE / 2;
         x2 = SIZE - 2; y2 = SIZE / 2;
@@ -165,10 +172,10 @@ srand(time(NULL));
                     placerBarriere(plateau, state.barrierX, state.barrierY, state.orientation);
                     state.modePlacement2 = 0;
                     if (GameMode == 2) {
-                    tour = 1;
-                } else if (GameMode == 4) {
-                    tour = 3;
-                }
+                        tour = 1;
+                    } else if (GameMode == 4) {
+                        tour = 3;
+                    }
                 } else if (input == 'o' || input == 'O')  {
                     state.orientation = (state.orientation == 'V') ? 'H' : 'V';
                 } else {
