@@ -225,6 +225,30 @@ void deplacerPion(char plateau[SIZE][SIZE][4], int *x, int *y,
         } else {
             return;
         }
+    } else if (joueur == PLAYER3) {
+        if (direction == 't' && *x > 1) {
+            newX -= 2;
+        } else if (direction == 'g' && *x < SIZE - 2) {
+            newX += 2;
+        } else if (direction == 'f' && *y > 1) {
+            newY -= 2;
+        } else if (direction == 'h' && *y < SIZE - 2) {
+            newY += 2;
+        } else {
+            return;
+        }
+    } else if (joueur == PLAYER4) {
+        if (direction == 'i' && *x > 1) {
+            newX -= 2;
+        } else if (direction == 'k' && *x < SIZE - 2) {
+            newX += 2;
+        } else if (direction == 'j' && *y > 1) {
+            newY -= 2;
+        } else if (direction == 'l' && *y < SIZE - 2) {
+            newY += 2;
+        } else {
+            return;
+        }
     }
     // Ajoutez le code pour les joueurs 3 et 4 si nécessaire
 
