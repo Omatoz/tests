@@ -20,10 +20,11 @@ srand(time(NULL));
 #endif
 
     int choix = 0;
-    printf("Choisissez une option :\n");
+    printf("\n MENU \n");
+    printf("0: Commencer une nouvelle partie\n");
     printf("1: Charger une partie sauvegardée\n");
     printf("2: Charger la partie de démonstration\n");
-    printf("0: Commencer une nouvelle partie\n");
+    printf("3: Quitter\n");
     printf("Votre choix : ");
     scanf("%d", &choix);
 
@@ -37,7 +38,9 @@ srand(time(NULL));
     } else if (choix == 2) {
         initialiserDemo(plateau, &x1, &y1, &x2, &y2,
                         &x3, &y3, &x4, &y4, &tour, &GameMode, &state);
-    } else {
+    } else if (choix == 3) {
+        exit(0);
+    } else if (choix == 0) {
         // Initialisation des variables pour une nouvelle partie
         x1 = 1; y1 = SIZE / 2;
         x2 = SIZE - 2; y2 = SIZE / 2;
