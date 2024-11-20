@@ -323,13 +323,12 @@ void placerBarriere(char plateau[SIZE][SIZE][4], int x, int y,
 
 void afficherEcranVictoire(int joueur) {
     printf("\n\n");
-    printf("*******************************\n");
-    printf("*                             *\n");
-    printf("*     Le joueur %d a gagné !    *\n", joueur);
-    printf("*                             *\n");
-    printf("*******************************\n");
+    printf("********************************\n");
+    printf("*                              *\n");
+    printf("*    Le joueur %d a gagné !    *\n", joueur);
+    printf("*                              *\n");
+    printf("********************************\n");
     printf("\n\n");
-}
 
 void sauvegarderPartie(const char *nomFichier,
                        char plateau[SIZE][SIZE][4], int x1, int y1, int x2, int y2,
