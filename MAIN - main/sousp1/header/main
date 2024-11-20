@@ -72,6 +72,8 @@ int main() {
         }
     }
 
+    tour = (rand() % GameMode) + 1;
+
     // Boucle principale du jeu
     while (1) {
         clearConsole(); // Effacer la console
@@ -127,7 +129,7 @@ int main() {
                 if (input == '\n' || input == '\r') { // Touche Entrée
                     placerBarriere(plateau, state.barrierX, state.barrierY, state.orientation);
                     state.modePlacement1 = 0;
-                    tour = (GameMode == 2) ? 2 : 2;
+                    tour = 2;
                 } else if (input == 'o' || input == 'O') {
                     state.orientation = (state.orientation == 'V') ? 'H' : 'V';
                 } else {
@@ -147,7 +149,7 @@ int main() {
                     break;
                 }
 
-                tour = (GameMode == 2) ? 2 : 2;
+                tour = 2;
             }
         } else if (tour == 2) {
             if (state.modePlacement2 == 0 && input == 'p') {
@@ -159,7 +161,7 @@ int main() {
                 if (input == '\n' || input == '\r') { // Touche Entrée
                     placerBarriere(plateau, state.barrierX, state.barrierY, state.orientation);
                     state.modePlacement2 = 0;
-                    tour = (GameMode == 2) ? 1 : 3;
+                    tour = 3;
                 } else if (input == 'o' || input == 'O')  {
                     state.orientation = (state.orientation == 'V') ? 'H' : 'V';
                 } else {
@@ -179,7 +181,7 @@ int main() {
                     break;
                 }
 
-                tour = (GameMode == 2) ? 1 : 3;
+                tour = 3;
             }
         } else if (tour == 3) {
             if (state.modePlacement3 == 0 && input == 'w') {
