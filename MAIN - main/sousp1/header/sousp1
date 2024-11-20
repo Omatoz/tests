@@ -325,7 +325,7 @@ void afficherEcranVictoire(int joueur) {
     printf("\n\n");
     printf("********************************\n");
     printf("*                              *\n");
-    printf("*    Le joueur %d a gagné !    *\n", joueur);
+    printf("*    Le joueur %d a gagné !     *\n", joueur);
     printf("*                              *\n");
     printf("********************************\n");
     printf("\n\n");
