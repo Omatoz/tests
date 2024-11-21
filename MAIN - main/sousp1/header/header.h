@@ -47,6 +47,15 @@ typedef struct {
     char orientation;
 } GameState;
 
+typedef struct {
+    int joueur;
+    char nom[PSEUDO];
+    int x;
+    int y;
+}Player;
+
+
+
 // Déclarations des fonctions
 void initialiserPlateau(char plateau[SIZE][SIZE][4]);
 void afficherPlateau(char plateau[SIZE][SIZE][4], GameState *state);

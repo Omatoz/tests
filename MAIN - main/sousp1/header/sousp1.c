@@ -415,43 +415,25 @@ void initialiserDemo(char plateau[SIZE][SIZE][4], int *x1, int *y1,
     *state = (GameState){0, 0, 0, 0, 0, 0, 'V'};
 }
 
-void Pseudo(char pseudo1[PSEUDO], char pseudo2[PSEUDO], char pseudo3[PSEUDO],char pseudo4[PSEUDO], int joueur, int *GameMode) {
-    if (*GameMode == 2) {
-        printf("Saisir le pseudo du premier joueur (50 caractères maximum) :");
-        fgets(pseudo1,PSEUDO,stdin);
-        printf("Saisir le pseudo du deuxième joueur (50 caractères maximum) :");
-        fgets(pseudo2,PSEUDO,stdin);
+//Saisir et afficher les pseudos des joueurs
+void Pseudo(char pseudo[4][PSEUDO], int joueur, int *GameMode) {
+    for (int i = 0; i < *GameMode; i++) {
+        printf("Saisir le pseudo du joueur %d (50 caractères maximum :", i+1);
+        fgets(pseudo[i],PSEUDO,stdin);
 
-        if (joueur == 1) {
-            for ( int i = 0 ; i < PSEUDO ; i++) {
-                printf("%c", pseudo1[i]);
-            }
-        } else if (joueur == 2) {
-            for ( int j = 0 ; j < PSEUDO ; j++) {
-                printf("%c", pseudo2[j]);
-            }
-        } else if (joueur == 3) {
-            for ( int k = 0 ; k < PSEUDO ; k++) {
-                printf("%c", pseudo3[k]);
-            }
-        } else if (joueur == 4) {
-            for ( int l = 0 ; l < PSEUDO ; l++) {
-                printf("%c", pseudo4[l]);
-            }
+        size_t len = strlen(pseudo[i]);
+        if (len > 0 && pseudo[i][len - 1] == '\n') {
+            pseudo[i][len - 1] = '\0';
+        }
+
+        if (joueur == i + 1) {
+            printf("Pseudo du joueur %d : %s\n", i + 1, pseudo[i]);
         }
     }
-    else if(*GameMode == 4) {
-        printf("Saisir le pseudo du premier joueur (50 caractères maximum) :");
-        fgets(pseudo1,PSEUDO,stdin);
-        printf("Saisir le pseudo du deuxième joueur (50 caractères maximum) :");
-        fgets(pseudo2,PSEUDO,stdin);
-        printf("Saisir le pseudo du troisième joueur (50 caractères maximum) :");
-        fgets(pseudo3,PSEUDO,stdin);
-        printf("Saisir le pseudo du quatrième joueur (50 caractères maximum) :");
-        fgets(pseudo4,PSEUDO,stdin);
+
+    printf("\nPseudos enregistrés :\n");
+    for (int i = 0; i < *GameMode; i++) {
+        printf("Joueur %d: %s\n", i + 1, pseudo[i]);
     }
 }
 
-void Gagnant(int joueur) {
-
-}
