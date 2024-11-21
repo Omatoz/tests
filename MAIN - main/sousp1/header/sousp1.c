@@ -417,9 +417,9 @@ void initialiserDemo(char plateau[SIZE][SIZE][4], int *x1, int *y1,
 
 void Pseudo(char pseudo1[PSEUDO], char pseudo2[PSEUDO], char pseudo3[PSEUDO],char pseudo4[PSEUDO], int joueur, int *GameMode) {
     if (*GameMode == 2) {
-        printf("Saisir le pseudo du premier joueur (50 caractères maximum :");
+        printf("Saisir le pseudo du premier joueur (50 caractères maximum) :");
         fgets(pseudo1,PSEUDO,stdin);
-        printf("Saisir le pseudo du deuxième joueur (50 caractères maximum :");
+        printf("Saisir le pseudo du deuxième joueur (50 caractères maximum) :");
         fgets(pseudo2,PSEUDO,stdin);
 
         if (joueur == 1) {
@@ -441,13 +441,13 @@ void Pseudo(char pseudo1[PSEUDO], char pseudo2[PSEUDO], char pseudo3[PSEUDO],cha
         }
     }
     else if(*GameMode == 4) {
-        printf("Saisir le pseudo du premier joueur (50 caractères maximum :");
+        printf("Saisir le pseudo du premier joueur (50 caractères maximum) :");
         fgets(pseudo1,PSEUDO,stdin);
-        printf("Saisir le pseudo du deuxième joueur (50 caractères maximum :");
+        printf("Saisir le pseudo du deuxième joueur (50 caractères maximum) :");
         fgets(pseudo2,PSEUDO,stdin);
-        printf("Saisir le pseudo du troisième joueur (50 caractères maximum :");
+        printf("Saisir le pseudo du troisième joueur (50 caractères maximum) :");
         fgets(pseudo3,PSEUDO,stdin);
-        printf("Saisir le pseudo du quatrième joueur (50 caractères maximum :");
+        printf("Saisir le pseudo du quatrième joueur (50 caractères maximum) :");
         fgets(pseudo4,PSEUDO,stdin);
     }
 }
