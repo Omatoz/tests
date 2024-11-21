@@ -421,6 +421,24 @@ void Pseudo(char pseudo1[PSEUDO], char pseudo2[PSEUDO], char pseudo3[PSEUDO],cha
         fgets(pseudo1,PSEUDO,stdin);
         printf("Saisir le pseudo du deuxième joueur (50 caractères maximum :");
         fgets(pseudo2,PSEUDO,stdin);
+
+        if (joueur == 1) {
+            for ( int i = 0 ; i < PSEUDO ; i++) {
+                printf("%c", pseudo1[i]);
+            }
+        } else if (joueur == 2) {
+            for ( int j = 0 ; j < PSEUDO ; j++) {
+                printf("%c", pseudo2[j]);
+            }
+        } else if (joueur == 3) {
+            for ( int k = 0 ; k < PSEUDO ; k++) {
+                printf("%c", pseudo3[k]);
+            }
+        } else if (joueur == 4) {
+            for ( int l = 0 ; l < PSEUDO ; l++) {
+                printf("%c", pseudo4[l]);
+            }
+        }
     }
     else if(*GameMode == 4) {
         printf("Saisir le pseudo du premier joueur (50 caractères maximum :");
@@ -432,4 +450,8 @@ void Pseudo(char pseudo1[PSEUDO], char pseudo2[PSEUDO], char pseudo3[PSEUDO],cha
         printf("Saisir le pseudo du quatrième joueur (50 caractères maximum :");
         fgets(pseudo4,PSEUDO,stdin);
     }
+}
+
+void Gagnant(int joueur) {
+
 }
