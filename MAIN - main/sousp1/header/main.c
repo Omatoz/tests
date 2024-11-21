@@ -7,6 +7,7 @@ int main() {
     int tour;
     int GameMode;
     GameState state;
+    char pseudos[4];
 
     srand(time(NULL));
 #ifdef _WIN32
@@ -72,6 +73,7 @@ int main() {
                 if (GameMode != 2 && GameMode != 4) {
                     printf("Erreur ! Veuillez choisir un mode de jeu valide.\n\n");
                 }
+                Pseudo(pseudos,GameMode,&GameMode);
             } while (GameMode != 2 && GameMode != 4);
 
             // Consommer le caractère '\n' restant dans le tampon
@@ -179,7 +181,7 @@ int main() {
                     if (x1 == SIZE - 2) {
                         clearConsole();
                         afficherPlateau(plateau, &state);
-                        afficherEcranVictoire(1);
+                        afficherEcranVictoire(1,pseudos);
 
                         printf("Appuyez sur Entrée pour quitter...");
                         getchar();
@@ -215,7 +217,7 @@ int main() {
                     if (x2 == 1) {
                         clearConsole();
                         afficherPlateau(plateau, &state);
-                        afficherEcranVictoire(2);
+                        afficherEcranVictoire(2, pseudos);
 
                         printf("Appuyez sur Entrée pour quitter...");
                         getchar();
@@ -251,7 +253,7 @@ int main() {
                     if (y3 == SIZE - 2) {
                         clearConsole();
                         afficherPlateau(plateau, &state);
-                        afficherEcranVictoire(3);
+                        afficherEcranVictoire(3,pseudos);
 
                         printf("Appuyez sur Entrée pour quitter...");
                         getchar();
@@ -283,7 +285,7 @@ int main() {
                     if (y4 == 1) {
                         clearConsole();
                         afficherPlateau(plateau, &state);
-                        afficherEcranVictoire(4);
+                        afficherEcranVictoire(4,pseudos);
 
                         printf("Appuyez sur Entrée pour quitter...");
                         getchar();

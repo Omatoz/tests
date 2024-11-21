@@ -321,11 +321,11 @@ void placerBarriere(char plateau[SIZE][SIZE][4], int x, int y,
     }
 }
 
-void afficherEcranVictoire(int joueur) {
+void afficherEcranVictoire(int joueur, char pseudo[4][PSEUDO]) {
     printf("\n\n");
     printf("********************************\n");
     printf("*                              *\n");
-    printf("*    Le joueur %d a gagné !     *\n", joueur);
+    printf("*    Le joueur %d qui à gagné !     *\n", pseudo[joueur-1]);
     printf("*                              *\n");
     printf("********************************\n");
     printf("\n\n");
@@ -418,7 +418,7 @@ void initialiserDemo(char plateau[SIZE][SIZE][4], int *x1, int *y1,
 //Saisir et afficher les pseudos des joueurs
 void Pseudo(char pseudo[4][PSEUDO], int joueur, int *GameMode) {
     for (int i = 0; i < *GameMode; i++) {
-        printf("Saisir le pseudo du joueur %d (50 caractères maximum :", i+1);
+        printf("Saisir le pseudo du joueur %d (50 caractères maximum :)\n", i+1);
         fgets(pseudo[i],PSEUDO,stdin);
 
         size_t len = strlen(pseudo[i]);
@@ -435,5 +435,6 @@ void Pseudo(char pseudo[4][PSEUDO], int joueur, int *GameMode) {
     for (int i = 0; i < *GameMode; i++) {
         printf("Joueur %d: %s\n", i + 1, pseudo[i]);
     }
+    printf("Appuyez sur entrer pour commencer à jouer");
 }
 
