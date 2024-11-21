@@ -25,6 +25,7 @@
 #define PLAYER2 '2'
 #define PLAYER3 '3'
 #define PLAYER4 '4'
+#define PSEUDO 50
 
 // Caractères de dessin de boîte
 #define VERTICAL_LINE       "║"
