@@ -329,7 +329,7 @@ void afficherEcranVictoire(int joueur) {
     printf("*                              *\n");
     printf("********************************\n");
     printf("\n\n");
-
+}
 void sauvegarderPartie(const char *nomFichier,
                        char plateau[SIZE][SIZE][4], int x1, int y1, int x2, int y2,
                        int x3, int y3, int x4, int y4, int tour, int GameMode,
