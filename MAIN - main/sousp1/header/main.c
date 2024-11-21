@@ -36,7 +36,7 @@ int main() {
     printf("2: Charger la partie de démonstration\n");
     printf("3: Afficher l’aide\n");
     printf("4: Afficher les scores des joueurs\n");
-    printf("3: Quitter\n");
+    printf("5: Quitter\n");
     printf("Votre choix : ");
     scanf("%d", &choix);
 
