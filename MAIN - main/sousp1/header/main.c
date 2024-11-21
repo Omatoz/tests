@@ -65,8 +65,8 @@ int main() {
             // Demander le mode de jeu
             do {
                 printf("Choisissez le mode de jeu (2 ou 4) :\n");
-                printf("Mode 2 - 2 Joueurs\n");
-                printf("Mode 4 - 4 Joueurs\n");
+                printf("Mode 2 -> 2 Joueurs\n");
+                printf("Mode 4 -> 4 Joueurs\n");
                 printf("Votre choix : ");
                 scanf("%d", &GameMode);
                 if (GameMode != 2 && GameMode != 4) {
