@@ -99,7 +99,9 @@ int main() {
             afficherPlateau(plateau, &state);
 
             int input;
+
             printf("\nC'est au joueur %d de jouer.\n", tour);
+
             if (tour == 1) {
                 if (state.modePlacement1 == 0) {
                     printf("\nActions possibles :\n");
