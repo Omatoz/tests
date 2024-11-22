@@ -48,11 +48,8 @@ typedef struct {
 } GameState;
 
 typedef struct {
-    int joueur;
-    char nom[PSEUDO];
-    int x;
-    int y;
-}Player;
+    char pseudos[PSEUDO];
+}Pseudos;
 
 
 
@@ -69,7 +66,7 @@ void deplacerBarriere(int *x, int *y, int direction, char joueur,
                       GameState *state);
 void placerBarriere(char plateau[SIZE][SIZE][4], int x, int y,
                     char orientation);
-void afficherEcranVictoire(int joueur, char pseudo[4][PSEUDO]);
+void afficherEcranVictoire(int joueur, Pseudos pseudo[4]);
 void sauvegarderPartie(const char *nomFichier,
                        char plateau[SIZE][SIZE][4], int x1, int y1, int x2, int y2,
                        int x3, int y3, int x4, int y4, int tour, int GameMode,
@@ -81,6 +78,6 @@ void chargerPartie(const char *nomFichier,
 void initialiserDemo(char plateau[SIZE][SIZE][4], int *x1, int *y1,
                      int *x2, int *y2, int *x3, int *y3, int *x4, int *y4,
                      int *tour, int *GameMode, GameState *state);
-void Pseudo(char pseudo1[4][PSEUDO], int joueur, int *GameMode);
+void Pseudo(Pseudos pseudo[4], int joueur, int *GameMode);
 
 #endif // HEADER_H
