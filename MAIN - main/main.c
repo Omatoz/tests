@@ -8,6 +8,7 @@ int main() {
     int GameMode;
     GameState state;
     Pseudos pseudos[4];
+    int joueur;
 
     srand(time(NULL));
 #ifdef _WIN32
