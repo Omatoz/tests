@@ -325,7 +325,7 @@ void afficherEcranVictoire(int joueur, Pseudos pseudo[4]) {
     printf("\n\n");
     printf("********************************\n");
     printf("*                              *\n");
-    printf("*    Le joueur %s qui à gagné !     *\n",pseudo[joueur-1].pseudos);
+    printf("*    Le joueur %s à gagné !     *\n",pseudo[joueur-1].pseudos);
     printf("*                              *\n");
     printf("********************************\n");
     printf("\n\n");

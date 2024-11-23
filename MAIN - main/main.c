@@ -7,7 +7,7 @@ int main() {
     int tour;
     int GameMode;
     GameState state;
-    char pseudos[4];
+    Pseudos pseudos[4];
 
     srand(time(NULL));
 #ifdef _WIN32
