@@ -4,7 +4,6 @@ int main() {
     char plateau[SIZE][SIZE][4];
     int x1, y1, x2, y2, x3, y3, x4, y4;
     int tour;
-    int joueur;
     int GameMode;
     GameState state;
     Pseudos pseudos[4];
