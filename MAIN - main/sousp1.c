@@ -464,7 +464,7 @@ void Pseudo(Pseudos pseudo[4], int joueur, int *GameMode) {
         printf("Joueur %d: %s\n", i + 1, pseudo[i].pseudos);
     }
     printf("Appuyez sur entrer pour commencer à jouer");
-
+    printf("Bonjour");
 }
 
 
