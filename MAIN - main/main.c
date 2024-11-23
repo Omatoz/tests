@@ -98,7 +98,7 @@ int main() {
         afficherPlateau(plateau, &state);
 
         int input;
-        printf("C'est au joueur %d de jouer.\n", tour);
+        printf("C'est à %s de jouer.\n", pseudos[tour-1].pseudos);
 
         if (tour == 1) {
                 if (state.modePlacement1 == 0) {

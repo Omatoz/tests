@@ -345,11 +345,11 @@ void placerBarriere(char plateau[SIZE][SIZE][4], int x, int y,
     }
 }
 
-void afficherEcranVictoire(int joueur, Pseudos pseudo[4]) {
+void afficherEcranVictoire(int joueur, Pseudos pseudos[4]) {
     printf("\n\n");
     printf("********************************\n");
     printf("*                              *\n");
-    printf("*    Le joueur %s à gagné !     *\n",pseudo[joueur-1].pseudos);
+    printf("*    Le joueur %s à gagné !     *\n",pseudos[joueur-1].pseudos);
     printf("*                              *\n");
     printf("********************************\n");
     printf("\n\n");
