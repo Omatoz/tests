@@ -211,6 +211,15 @@ CMAKE_TAPI:FILEPATH=CMAKE_TAPI-NOTFOUND
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
 //Value Computed by CMake
+PT10_BINARY_DIR:STATIC=C:/Users/cazau/OneDrive/Documents/GitHub/ing1-quoridor-2024-groupe12-8/cmake-build-debug
+
+//Value Computed by CMake
+PT10_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+PT10_SOURCE_DIR:STATIC=C:/Users/cazau/OneDrive/Documents/GitHub/ing1-quoridor-2024-groupe12-8
+
+//Value Computed by CMake
 ing1_quoridor_2024_groupe12_8_BINARY_DIR:STATIC=C:/Users/cazau/OneDrive/Documents/GitHub/ing1-quoridor-2024-groupe12-8/cmake-build-debug
 
 //Value Computed by CMake
@@ -362,3 +371,4 @@ CMAKE_TAPI-ADVANCED:INTERNAL=1
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //linker supports push/pop state
 _CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED:INTERNAL=TRUE
+
