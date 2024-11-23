@@ -32,12 +32,12 @@ int main() {
     printf("\n");
     printf("\n");
     printf("Choisissez une option :\n");
-    printf("0: Commencer une nouvelle partie\n");
-    printf("1: Charger une partie sauvegardée\n");
-    printf("2: Charger la partie de démonstration\n");
-    printf("3: Afficher l’aide\n");
-    printf("4: Afficher les scores des joueurs\n");
-    printf("5: Quitter\n");
+    printf("0: COMMENCER UNE NOUVELLE PARTIE\n");
+    printf("1: CHARGER UNE PARTIE SAUVEGARDEE\n");
+    printf("2: CHARGER LA PARTIE DE DEMONSTRATION\n");
+    printf("3: AFFICHER L'AIDE\n");
+    printf("4: AFFICHER LES SCORES DES JOUEURS\n");
+    printf("3: QUITTER\n");
     printf("Votre choix : ");
     scanf("%d", &choix);
 
