@@ -434,7 +434,7 @@ void Pseudo(Pseudos pseudo[4], int joueur, int *GameMode) {
         }*/
     }
 
-    printf("\nPseudos enregistrés :\n");
+    printf("\nPseudos enregistrés :\n");  //Vérification pour savoir si les pseudos sont bien enregistrés
     for (int i = 0; i < *GameMode; i++) {
         printf("Joueur %d: %s\n", i + 1, pseudo[i].pseudos);
     }
