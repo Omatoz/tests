@@ -1,28 +1,6 @@
 // sousp1.c
 #include "header.h"
 
-void menu(int choix1) {
-    printf("   *******      **     **     *******     *******     **   *******       *******     *******  \n");
-    printf("  **/////**    /**    /**    **/////**   /**////**   /**  /**////**     **/////**   /**////** \n");
-    printf(" **     //**   /**    /**   **     //**  /**   /**   /**  /**    /**   **     //**  /**   /** \n");
-    printf("/**      /**   /**    /**  /**      /**  /*******    /**  /**    /**  /**      /**  /*******  \n");
-    printf("/**    **/**   /**    /**  /**      /**  /**///**    /**  /**    /**  /**      /**  /**///**  \n");
-    printf("//**  // **    /**    /**  //**     **   /**  //**   /**  /**    **   //**     **   /**  //** \n");
-    printf(" //******* **  //*******    //*******    /**   //**  /**  /*******     //*******    /**   //**\n");
-    printf("  /////// //    ///////      ///////     //     //   //   ///////       ///////     //     // \n");
-    printf("\n");
-    printf("\n");
-    printf("Choisissez une option :\n");
-    printf("0: COMMENCER UNE NOUVELLE PARTIE\n");
-    printf("1: CHARGER UNE PARTIE SAUVEGARDEE\n");
-    printf("2: CHARGER LA PARTIE DE DEMONSTRATION\n");
-    printf("3: AFFICHER L'AIDE\n");
-    printf("4: AFFICHER LES SCORES DES JOUEURS\n");
-    printf("3: QUITTER\n");
-    printf("Votre choix : ");
-    scanf("%d", &choix1);
-}
-
 void initialiserPlateau(char plateau[SIZE][SIZE][4]) {
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {

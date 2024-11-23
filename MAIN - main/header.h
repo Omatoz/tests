@@ -52,7 +52,6 @@ typedef struct {
 }Pseudos;
 
 // Déclarations des fonctions
-void menu(int choix1);
 void initialiserPlateau(char plateau[SIZE][SIZE][4]);
 void afficherPlateau(char plateau[SIZE][SIZE][4], GameState *state);
 int lireTouche();
