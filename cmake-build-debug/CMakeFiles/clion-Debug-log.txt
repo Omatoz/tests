@@ -11,7 +11,7 @@ CMake Error at CMakeLists.txt:8 (add_executable):
 
 
 CMake Error at CMakeLists.txt:8 (add_executable):
-  No SOURCES given to target: PT10
+  No SOURCES given to target: ing1_quoridor_2024_groupe12_8
 
 
 CMake Generate step failed.  Build files cannot be regenerated correctly.
