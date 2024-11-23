@@ -51,8 +51,6 @@ typedef struct {
     char pseudos[PSEUDO];
 }Pseudos;
 
-
-
 // Déclarations des fonctions
 void initialiserPlateau(char plateau[SIZE][SIZE][4]);
 void afficherPlateau(char plateau[SIZE][SIZE][4], GameState *state);
@@ -79,5 +77,4 @@ void initialiserDemo(char plateau[SIZE][SIZE][4], int *x1, int *y1,
                      int *x2, int *y2, int *x3, int *y3, int *x4, int *y4,
                      int *tour, int *GameMode, GameState *state);
 void Pseudo(Pseudos pseudo[4], int joueur, int *GameMode);
-
 #endif // HEADER_H
