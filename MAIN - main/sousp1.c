@@ -447,6 +447,16 @@ void Pseudo(Pseudos pseudo[4], int joueur, int *GameMode) {
 
         printf("Saisir le pseudo du joueur %d (50 caractères maximum ):\n", i+1);
         fgets(pseudo[i].pseudos,PSEUDO,stdin);
+
+
+        /*size_t len = strlen(pseudo[i].pseudos);
+        if (len > 0 && pseudo[i].pseudos[len -1] == '\n') {
+            pseudo[i].pseudos[len - 1] = '\0';
+        }
+
+        if (joueur == i + 1) {
+            printf("Pseudo du joueur %d : %s\n", i + 1, pseudo[i].pseudos);
+        }*/
     }
 
     printf("\nPseudos enregistrés :\n");  //Vérification pour savoir si les pseudos sont bien enregistrés
