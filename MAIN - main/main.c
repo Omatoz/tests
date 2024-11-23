@@ -2,7 +2,6 @@
 
 int main() {
     char plateau[SIZE][SIZE][4];
-    int choix1, choix2;
     int x1, y1, x2, y2, x3, y3, x4, y4;
     int tour;
     int joueur;
@@ -21,7 +20,26 @@ int main() {
     SetConsoleOutputCP(CP_UTF8);
 #endif
 
-    menu(choix1);
+    int choix1 = 0, choix2 = 0;
+    printf("   *******      **     **     *******     *******     **   *******       *******     *******  \n");
+    printf("  **/////**    /**    /**    **/////**   /**////**   /**  /**////**     **/////**   /**////** \n");
+    printf(" **     //**   /**    /**   **     //**  /**   /**   /**  /**    /**   **     //**  /**   /** \n");
+    printf("/**      /**   /**    /**  /**      /**  /*******    /**  /**    /**  /**      /**  /*******  \n");
+    printf("/**    **/**   /**    /**  /**      /**  /**///**    /**  /**    /**  /**      /**  /**///**  \n");
+    printf("//**  // **    /**    /**  //**     **   /**  //**   /**  /**    **   //**     **   /**  //** \n");
+    printf(" //******* **  //*******    //*******    /**   //**  /**  /*******     //*******    /**   //**\n");
+    printf("  /////// //    ///////      ///////     //     //   //   ///////       ///////     //     // \n");
+    printf("\n");
+    printf("\n");
+    printf("Choisissez une option :\n");
+    printf("0: Commencer une nouvelle partie\n");
+    printf("1: Charger une partie sauvegardée\n");
+    printf("2: Charger la partie de démonstration\n");
+    printf("3: Afficher l’aide\n");
+    printf("4: Afficher les scores des joueurs\n");
+    printf("3: Quitter\n");
+    printf("Votre choix : ");
+    scanf("%d", &choix1);
 
     // Consommer le caractère '\n' restant dans le tampon
     int c;
@@ -30,26 +48,36 @@ int main() {
     if (choix1 == 1) {
         chargerPartie("sauvegarde.dat", plateau, &x1, &y1, &x2, &y2,
                       &x3, &y3, &x4, &y4, &tour, &GameMode, &state);
-
     } else if (choix1 == 2) {
         initialiserDemo(plateau, &x1, &y1, &x2, &y2,
                         &x3, &y3, &x4, &y4, &tour, &GameMode, &state);
-
     } else if (choix1 == 3) {
-        printf("\nQUORIDOR\nLe jeu du Quoridor est un jeu de réflexion où le but est d'atteindre le premier la ligne opposé.\nLes joueurs jouent chacun leur tour et ont la possibilité d'effectuer une des deux actions possibles : Avancer son pion ou poser une barrière.\n");
-        printf("\n1. BUT DU JEU\n");
-        printf("Atteindre le premier la ligne opposée à sa ligne de départ.");
-        printf("2. REGLES DU JEU\n");
-        printf("A. REGLE POUR 2 JOUEURS\nEn début de partie, les barrières sont remisées dans leur zone de stockage : 10 barrières par joueur.\nChaque joueur pose son pion au centre de sa ligne de départ.\nUn tirage au sort détermine qui commence.");
-        printf("B. REGLE POUR 4 JOUEURS\nEn début de partie, les 4 pions sont disposés au centre de chacun des 4 cotés du plateau et chaque joueur dispose de 5 barrières.\nLes règles sont strictement identiques, mais on ne peut sauter plus d’un pion à la fois");
-        printf("3. DEROULEMENT DE LA PARTIE\n");
-        printf("A tour de rôle, chaque joueur choisit de déplacer son pion ou de poser une de ses barrières.\nLorsqu’il n’a plus de barrières, un joueur est obligé de déplacer son pion.\n");
-        printf("\n1. Déplacement des pions:\nLes pions se déplacent d’une case, horizontalement ou verticalement, en avant ou en arrière, les barrières doivent être contournées.\n");
-        printf("\n2. Pose des barrières:\nUne barrière doit être posée exactement entre 2 blocs de 2 cases.\nLa pose des barrières a pour but de se créer son propre chemin ou de ralentir.\nl’adversaire, mais il est interdit de lui fermer totalement l’accès à sa ligne de but: il faut toujours lui laisser une solution.");
-        printf("\n3. Face à face:\nQuand les 2 pions se retrouvent en vis-à-vis sur 2 cases voisines non séparées par une barrière, le joueur dont c’est le tour peut sauter son adversaire et se placer derrière lui.\nSi une barrière est située derrière le pion sauté, le joueur peut choisir de bifurquer à droite ou à gauche du pion sauté.");
-        printf("\nFIN DE PARTIE\nLe premier joueur qui atteint une des 9 cases de la ligne opposée à sa ligne de départ gagne la partie.");
-        printf("\nDUREE DE PARTIE\nLe jeu dure de 10 à 20 minutes.");
-        printf("\n4. QUITTER\n");
+        printf("Le jeu du Quoridor est un jeu de réflexion où le but est d'atteindre le premier la ligne opposé. Les joueurs jouent chacun leur tour et ont la possibilité d'effectuer une des deux actions possibles : Avancer son pion ou poser une barrière.");
+        printf("Que voulez-vous ?");
+        printf("1. BUT DU JEU");
+        printf("2. REGLES DU JEU");
+        printf("3. DEROULEMENT DE LA PARTIE");
+        printf("4. QUITTER");
+        printf("Votre choix : ");
+        scanf("%d", &choix2);
+
+        switch (choix2) {
+            case 1:
+                printf("BUT DU JEU :\n Atteindre le premier la ligne opposée à sa ligne de départ.");
+                break;
+            case 2:
+                printf("REGLE POUR 2 JOUEURS\nEn début de partie, les barrières sont remisées dans leur zone de stockage : 10 barrières par joueur.\nChaque joueur pose son pion au centre de sa ligne de départ.\nUn tirage au sort détermine qui commence.");
+                printf("REGLE POUR 4 JOUEURS\nEn début de partie, les 4 pions sont disposés au centre de chacun des 4 cotés du plateau et chaque joueur dispose de 5 barrières.\nLes règles sont strictement identiques, mais on ne peut sauter plus d’un pion à la fois");
+                break;
+            case 3:
+                printf("DEROULEMENT DE LA PARTIE\nA tour de rôle, chaque joueur choisit de déplacer son pion ou de poser une de ses barrières.\nLorsqu’il n’a plus de barrières, un joueur est obligé de déplacer son pion.\n");
+                printf("1. Déplacement des pions:\nLes pions se déplacent d’une case, horizontalement ou verticalement, en avant ou en arrière, les barrières doivent être contournées.\n");
+                printf("2. Pose des barrières:\nUne barrière doit être posée exactement entre 2 blocs de 2 cases.\nLa pose des barrières a pour but de se créer son propre chemin ou de ralentir.\nl’adversaire, mais il est interdit de lui fermer totalement l’accès à sa ligne de but: il faut toujours lui laisser une solution.");
+                printf("3. Face à face:\nQuand les 2 pions se retrouvent en vis-à-vis sur 2 cases voisines non séparées par une barrière, le joueur dont c’est le tour peut sauter son adversaire et se placer derrière lui.\nSi une barrière est située derrière le pion sauté, le joueur peut choisir de bifurquer à droite ou à gauche du pion sauté.");
+                printf("FIN DE PARTIE\nLe premier joueur qui atteint une des 9 cases de la ligne opposée à sa ligne de départ gagne la partie.");
+                printf("DUREE DE PARTIE\nLe jeu dure de 10 à 20 minutes.");
+                break
+        }
     } else if (choix1 == 0) {
         // Initialisation des variables pour une nouvelle partie
         x1 = 1; y1 = SIZE / 2;
@@ -98,52 +126,52 @@ int main() {
         printf("C'est au joueur %d de jouer.\n", tour);
         if (tour == 1) {
             if (state.modePlacement1 == 0) {
-                printf("Actions Possibles :\n");
+                printf("Actions Possibles\n");
                 printf("Déplacez votre pion avec les touches : z/q/s/d\n");
                 printf("Appuyez sur 'a' pour placer une barrière\n");
                 printf("Appuyez sur 'T' pour sauvegarder\n");
                 printf("Appuyez sur Espace pour passer votre tour");
             } else {
-                printf("Etapes à suivre :\n");
+                printf("Etapes à suivre\n");
                 printf("Déplacez la barrière avec les touches : z/q/s/d\n");
                 printf("Changez l'orientation de la barrière avec 'o'\n");
                 printf("Appuyez sur Entrée pour la placer\n");
             }
         } else if (tour == 2) {
             if (state.modePlacement2 == 0) {
-                printf("Actions Possibles : \n");
+                printf("Actions Possibles\n");
                 printf("Déplacez votre pion avec les flèches\n");
                 printf("Appuyez sur 'a' pour placer une barrière\n");
                 printf("Appuyez sur 'T' pour sauvegarder\n");
                 printf("Appuyez sur Espace pour passer votre tour");
             } else {
-                printf("Etapes à suivre :\n");
+                printf("Etapes à suivre\n");
                 printf("Déplacez la barrière avec les flèches\n");
                 printf("Changez l'orientation de la barrière avec 'o'\n");
                 printf("Appuyez sur Entrée pour la placer\n");
             }
         } else if (tour == 3) {
             if (state.modePlacement3 == 0) {
-                printf("Actions Possibles : \n");
+                printf("Actions Possibles\n");
                 printf("Déplacez votre pion avec les touches : t/f/g/h\n");
                 printf("Appuyez sur 'a' pour placer une barrière\n");
                 printf("Appuyez sur 'T' pour sauvegarder\n");
-                printf("Appuyez sur Espace pour passer votre tour\n");
+                printf("Appuyez sur Espace pour passer votre tour");
             } else {
-                printf("Etapes à suivre : \n");
+                printf("Etapes à suivre\n");
                 printf("Déplacez la barrière avec les touches : t/f/g/h\n");
                 printf("Changez l'orientation de la barrière avec 'o'\n");
                 printf("Appuyez sur Entrée pour la placer\n");
             }
         } else if (tour == 4) {
             if (state.modePlacement4 == 0) {
-                printf("Actions Possibles : \n");
+                printf("Actions Possibles\n");
                 printf("Déplacez votre pion avec les touches : i/j/k/l\n");
                 printf("Appuyez sur 'a' pour placer une barrière\n");
                 printf("Appuyez sur 'T' pour sauvegarder\n");
-                printf("Appuyez sur Espace pour passer votre tour\n");
+                printf("Appuyez sur Espace pour passer votre tour");
             } else {
-                printf("Etapes à suivre : \n");
+                printf("Etapes à suivre\n");
                 printf("Déplacez la barrière avec les touches : i/j/k/l\n");
                 printf("Changez l'orientation de la barrière avec 'o'\n");
                 printf("Appuyez sur Entrée pour la placer.\n");
