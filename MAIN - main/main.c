@@ -105,6 +105,7 @@ int main() {
                     printf("\nActions possibles :\n");
                     printf("Déplacez votre pion avec : z/q/s/d.\n");
                     printf("Appuyez sur 'a' pour placer une barrière.\n");
+                    printf("Appuyez sur la barre espace pour passer votre tour.");
                     printf("Appuyez sur 'T' pour sauvegarder.\n");
                 } else {
                     printf("\nPlacement barrières :\n");
@@ -117,6 +118,7 @@ int main() {
                     printf("\nActions possibles :\n");
                     printf("Déplacez votre pion avec les flèches du clavier.\n");
                     printf("Appuyez sur 'a' pour placer une barrière.\n");
+                    printf("Appuyez sur la barre espace pour passer votre tour.");
                     printf("Appuyez sur 'T' pour sauvegarder.\n");
                 } else {
                     printf("\nPlacement barrières :\n");
@@ -128,6 +130,7 @@ int main() {
                     printf("\nActions possibles :\n");
                     printf("Déplacez votre pion avec : t/f/g/h.\n");
                     printf("Appuyez sur 'a' pour placer une barrière.\n");
+                    printf("Appuyez sur la barre espace pour passer votre tour.");
                     printf("Appuyez sur 'T' pour sauvegarder.\n");
                 } else {
                     printf("\nPlacement barrières :\n");
@@ -139,6 +142,7 @@ int main() {
                     printf("\nActions possibles :\n");
                     printf("Déplacez votre pion avec : i/j/k/l.\n");
                     printf("Appuyez sur 'a' pour placer une barrière.\n");
+                    printf("Appuyez sur la barre espace pour passer votre tour.");
                     printf("Appuyez sur 'T' pour sauvegarder.\n");
                 } else {
                     printf("\nPlacement barrières :\n");
