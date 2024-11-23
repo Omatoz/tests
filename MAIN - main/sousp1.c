@@ -4,6 +4,9 @@
 void initialiserPlateau(char plateau[SIZE][SIZE][4]) {
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {
+
+        }
+        for (int j = 0; j < SIZE; j++) {
             plateau[i][j][0] = '\0';
 
             if (i == 0 && j == 0) {
@@ -289,7 +292,28 @@ void deplacerBarriere(int *x, int *y, int direction, char joueur,
         } else if (direction == 'R') {
             deltaY = 1;
         }
+    } else if (joueur == PLAYER3) {
+        if (direction == 't') {
+            deltaX = -1;
+        } else if (direction == 'g') {
+            deltaX = 1;
+        } else if (direction == 'f') {
+            deltaY = -1;
+        } else if (direction == 'h') {
+            deltaY = 1;
+        }
+    } else if (joueur == PLAYER4) {
+        if (direction == 'i') {
+            deltaX = -1;
+        } else if (direction == 'k') {
+            deltaX = 1;
+        } else if (direction == 'j') {
+            deltaY = -1;
+        } else if (direction == 'l') {
+            deltaY = 1;
+        }
     }
+
     // Ajoutez le code pour les joueurs 3 et 4 si nécessaire
 
     *x += deltaX;
@@ -330,6 +354,7 @@ void afficherEcranVictoire(int joueur, Pseudos pseudo[4]) {
     printf("********************************\n");
     printf("\n\n");
 }
+
 void sauvegarderPartie(const char *nomFichier,
                        char plateau[SIZE][SIZE][4], int x1, int y1, int x2, int y2,
                        int x3, int y3, int x4, int y4, int tour, int GameMode,
@@ -441,4 +466,5 @@ void Pseudo(Pseudos pseudo[4], int joueur, int *GameMode) {
     printf("Appuyez sur entrer pour commencer à jouer");
 
 }
+
 
