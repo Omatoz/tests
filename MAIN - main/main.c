@@ -64,7 +64,7 @@ int main() {
 
         // Demander le mode de jeu
         do {
-            printf("Choisissez le mode de jeu (2 ou 4) :\n");
+            printf("\nChoisissez le mode de jeu (2 ou 4) :\n");
             printf("Mode 2 - 2 Joueurs\n");
             printf("Mode 4 - 4 Joueurs\n");
             printf("Votre choix : ");
@@ -101,27 +101,27 @@ int main() {
         printf("C'est au joueur %d de jouer.\n", tour);
         if (tour == 1) {
             if (state.modePlacement1 == 0) {
-                printf("Appuyez sur 'a' pour placer une barrière, 'T' pour sauvegarder ou déplacez votre pion avec z/q/s/d.\n");
+                printf("Actions Possibles\nDéplacez votre pion avec les touches : z/q/s/d\nAppuyez sur 'a' pour placer une barrière\nAppuyez sur 'T' pour sauvegarder\nAppuyez sur Espace pour passer votre tour");
             } else {
-                printf("Déplacez la barrière avec z/q/s/d, changez l'orientation avec 'o' et appuyez sur Entrée pour la placer.\n");
+                printf("Etapes à suivre\nDéplacez la barrière avec les touches : z/q/s/d\nChangez l'orientation de la barrière avec 'o'\nAppuyez sur Entrée pour la placer.\n");
             }
         } else if (tour == 2) {
             if (state.modePlacement2 == 0) {
-                printf("Appuyez sur 'p' pour placer une barrière, 'T' pour sauvegarder ou déplacez votre pion avec les flèches.\n");
+                printf("Actions Possibles\nDéplacez votre pion avec les flèches\nAppuyez sur 'a' pour placer une barrière\nAppuyez sur 'T' pour sauvegarder\nAppuyez sur Espace pour passer votre tour");
             } else {
-                printf("Déplacez la barrière avec les flèches, changez l'orientation avec 'O' et appuyez sur Entrée pour la placer.\n");
+                printf("Etapes à suivre\nDéplacez la barrière avec les flèches\nChangez l'orientation de la barrière avec 'o'\nAppuyez sur Entrée pour la placer.\n");
             }
         } else if (tour == 3) {
             if (state.modePlacement3 == 0) {
-                printf("Appuyez sur 'w' pour placer une barrière, 'T' pour sauvegarder ou déplacez votre pion avec t/f/g/h.\n");
+                printf("Actions Possibles\nDéplacez votre pion avec les touches : t/f/g/h\nAppuyez sur 'a' pour placer une barrière\nAppuyez sur 'T' pour sauvegarder\nAppuyez sur Espace pour passer votre tour");
             } else {
-                printf("Déplacez la barrière avec t/f/g/h, changez l'orientation avec 'm' et appuyez sur Entrée pour la placer.\n");
+                printf("Etapes à suivre\nDéplacez la barrière avec les touches : t/f/g/h\nChangez l'orientation de la barrière avec 'o'\nAppuyez sur Entrée pour la placer.\n");
             }
         } else if (tour == 4) {
             if (state.modePlacement4 == 0) {
-                printf("Appuyez sur 'n' pour placer une barrière, 'T' pour sauvegarder ou déplacez votre pion avec i/j/k/l.\n");
+                printf("Actions Possibles\nDéplacez votre pion avec les touches : i/j/k/l\nAppuyez sur 'a' pour placer une barrière\nAppuyez sur 'T' pour sauvegarder\nAppuyez sur Espace pour passer votre tour");
             } else {
-                printf("Déplacez la barrière avec i/j/k/l, changez l'orientation avec 'M' et appuyez sur Entrée pour la placer.\n");
+                printf("Etapes à suivre\nDéplacez la barrière avec les touches : i/j/k/l\nChangez l'orientation de la barrière avec 'o'\nAppuyez sur Entrée pour la placer.\n");
             }
         }
 
