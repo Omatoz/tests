@@ -241,7 +241,8 @@ int main() {
                             deplacerBarriere(&state.barrierX, &state.barrierY, input, PLAYER1, &state);
                         }
                     } else {
-                        deplacerPion(plateau, &x1, &y1, input, PLAYER1);
+                        deplacerPion(plateau, &x1, &y1, (char)input, PLAYER1,
+                                     x1, y1, x2, y2, x3, y3, x4, y4, GameMode);
 
                         if (x1 == SIZE - 2) {
                             clearConsole();
@@ -280,7 +281,8 @@ int main() {
                             deplacerBarriere(&state.barrierX, &state.barrierY, input, PLAYER2, &state);
                         }
                     } else {
-                        deplacerPion(plateau, &x2, &y2, input, PLAYER2);
+                        deplacerPion(plateau, &x2, &y2, (char)input, PLAYER2,
+                                     x1, y1, x2, y2, x3, y3, x4, y4, GameMode);
 
                         if (x2 == 1) {
                             clearConsole();
@@ -319,7 +321,8 @@ int main() {
                             deplacerBarriere(&state.barrierX, &state.barrierY, input, PLAYER3, &state);
                         }
                     } else {
-                        deplacerPion(plateau, &x3, &y3, input, PLAYER3);
+                        deplacerPion(plateau, &x3, &y3, (char)input, PLAYER3,
+                                     x1, y1, x2, y2, x3, y3, x4, y4, GameMode);
 
                         if (y3 == SIZE - 2) {
                             clearConsole();
@@ -358,7 +361,8 @@ int main() {
                             deplacerBarriere(&state.barrierX, &state.barrierY, input, PLAYER4, &state);
                         }
                     } else {
-                        deplacerPion(plateau, &x4, &y4, input, PLAYER4);
+                        deplacerPion(plateau, &x4, &y4, (char)input, PLAYER4,
+                                     x1, y1, x2, y2, x3, y3, x4, y4, GameMode);
 
                         if (y4 == 1) {
                             clearConsole();
