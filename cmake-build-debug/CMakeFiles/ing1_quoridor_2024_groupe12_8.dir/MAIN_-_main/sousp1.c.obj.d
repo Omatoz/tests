@@ -1,6 +1,5 @@
 CMakeFiles/ing1_quoridor_2024_groupe12_8.dir/MAIN_-_main/sousp1.c.obj: \
  C:\Users\cazau\OneDrive\Documents\GitHub\ing1-quoridor-2024-groupe12-8\MAIN\ -\ main\sousp1.c \
- C:\Users\cazau\OneDrive\Documents\GitHub\ing1-quoridor-2024-groupe12-8\MAIN\ -\ main\header.h \
  C:/Program\ Files/JetBrains/CLion\ 2024.2.1/bin/mingw/x86_64-w64-mingw32/include/stdio.h \
  C:/Program\ Files/JetBrains/CLion\ 2024.2.1/bin/mingw/x86_64-w64-mingw32/include/corecrt_stdio_config.h \
  C:/Program\ Files/JetBrains/CLion\ 2024.2.1/bin/mingw/x86_64-w64-mingw32/include/corecrt.h \
@@ -22,6 +21,7 @@ CMakeFiles/ing1_quoridor_2024_groupe12_8.dir/MAIN_-_main/sousp1.c.obj: \
  C:/Program\ Files/JetBrains/CLion\ 2024.2.1/bin/mingw/x86_64-w64-mingw32/include/malloc.h \
  C:/Program\ Files/JetBrains/CLion\ 2024.2.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/mm_malloc.h \
  C:/Program\ Files/JetBrains/CLion\ 2024.2.1/bin/mingw/x86_64-w64-mingw32/include/errno.h \
+ C:\Users\cazau\OneDrive\Documents\GitHub\ing1-quoridor-2024-groupe12-8\MAIN\ -\ main\header.h \
  C:/Program\ Files/JetBrains/CLion\ 2024.2.1/bin/mingw/x86_64-w64-mingw32/include/string.h \
  C:/Program\ Files/JetBrains/CLion\ 2024.2.1/bin/mingw/x86_64-w64-mingw32/include/sec_api/string_s.h \
  C:/Program\ Files/JetBrains/CLion\ 2024.2.1/bin/mingw/x86_64-w64-mingw32/include/time.h \

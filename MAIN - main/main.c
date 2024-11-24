@@ -384,6 +384,7 @@ int main() {
                 }
             }
         }
+        clearConsole();
     } while (choix != 5); // Quitte lorsque l'utilisateur choisit l'option 5.
 }
 
