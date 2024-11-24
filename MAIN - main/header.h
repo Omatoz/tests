@@ -16,8 +16,8 @@
 
 #else
 #include <termios.h>
-    #include <unistd.h>
-    #include <fcntl.h>
+#include <unistd.h>
+#include <fcntl.h>
 #endif
 
 #define SIZE 19
@@ -49,35 +49,32 @@ typedef struct {
 
 typedef struct {
     char pseudos[PSEUDO];
-}Pseudos;
+} Pseudos;
 
 // Déclarations des fonctions
 void initialiserPlateau(char plateau[SIZE][SIZE][4]);
 void afficherPlateau(char plateau[SIZE][SIZE][4], GameState *state);
 int lireTouche();
 void clearConsole();
-int barriereEntre(int x1, int y1, int x2, int y2,
-                  char plateau[SIZE][SIZE][4]);
-void deplacerPion(char plateau[SIZE][SIZE][4], int *x, int *y,
-                  int direction, char joueur);
-void deplacerBarriere(int *x, int *y, int direction, char joueur,
-                      GameState *state);
-void placerBarriere(char plateau[SIZE][SIZE][4], int x, int y,
-                    char orientation);
+int barriereEntre(int x1, int y1, int x2, int y2, char plateau[SIZE][SIZE][4]);
+void deplacerPion(char plateau[SIZE][SIZE][4], int *x, int *y, int direction, char joueur);
+void deplacerBarriere(int *x, int *y, int direction, char joueur, GameState *state);
+void placerBarriere(char plateau[SIZE][SIZE][4], int x, int y, char orientation, int GameMode,
+                    int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);
+int estCheminValide(char plateau[SIZE][SIZE][4], int startX, int startY, int targetRow);
+int peutPlacerBarriere(char plateau[SIZE][SIZE][4], int x, int y, char orientation,
+                       int GameMode, int x1, int y1, int x2, int y2,
+                       int x3, int y3, int x4, int y4);
 void afficherEcranVictoire(int joueur, Pseudos pseudo[4]);
-void sauvegarderPartie(const char *nomFichier,
-                       char plateau[SIZE][SIZE][4], int x1, int y1, int x2, int y2,
-                       int x3, int y3, int x4, int y4, int tour, int GameMode,
-                       GameState *state);
-void chargerPartie(const char *nomFichier,
-                   char plateau[SIZE][SIZE][4], int *x1, int *y1, int *x2, int *y2,
-                   int *x3, int *y3, int *x4, int *y4, int *tour, int *GameMode,
-                   GameState *state);
+void sauvegarderPartie(const char *nomFichier, char plateau[SIZE][SIZE][4],
+                       int x1, int y1, int x2, int y2, int x3, int y3,
+                       int x4, int y4, int tour, int GameMode, GameState *state);
+void chargerPartie(const char *nomFichier, char plateau[SIZE][SIZE][4],
+                   int *x1, int *y1, int *x2, int *y2, int *x3, int *y3,
+                   int *x4, int *y4, int *tour, int *GameMode, GameState *state);
 void initialiserDemo(char plateau[SIZE][SIZE][4], int *x1, int *y1,
                      int *x2, int *y2, int *x3, int *y3, int *x4, int *y4,
                      int *tour, int *GameMode, GameState *state);
 void Pseudo(Pseudos pseudo[4], int joueur, int *GameMode);
+
 #endif // HEADER_H
-
-
-
