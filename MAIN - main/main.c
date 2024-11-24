@@ -10,6 +10,8 @@ int main() {
     int GameMode;
     GameState state;
     Pseudos pseudos[4];
+    Pseudos scores[100]; // Tableau pour stocker jusqu'à 100 joueurs
+    int nbScores = 0;    // Nombre actuel de joueurs dans les scores
 
     srand(time(NULL));
 #ifdef _WIN32
@@ -64,6 +66,9 @@ int main() {
                 GameMode = 0;
                 state = (GameState){0, 0, 0, 0, 0, 0, 'V', 5, 5, 5, 5};
 
+                // Charger les scores depuis le fichier
+                chargerScores("scores.dat", scores, &nbScores);
+
                 // Demander le mode de jeu
                 do {
                     printf("\n");
@@ -77,7 +82,7 @@ int main() {
                     if (GameMode != 2 && GameMode != 4) {
                         printf("Erreur ! Veuillez choisir un mode de jeu valide.\n\n");
                     } else if (GameMode == 2 || GameMode == 4){
-                        Pseudo(pseudos, &GameMode);
+                        Pseudo(pseudos, &GameMode, scores, &nbScores);
                     }
                 } while (GameMode != 2 && GameMode != 4);
 
@@ -95,10 +100,14 @@ int main() {
                 }
                 break;
             case 1:
+                // Charger les scores depuis le fichier
+                chargerScores("scores.dat", scores, &nbScores);
                 chargerPartie("sauvegarde.dat", plateau, &x1, &y1, &x2, &y2,
                               &x3, &y3, &x4, &y4, &tour, &GameMode, &state);
                 break;
             case 2:
+                // Charger les scores depuis le fichier
+                chargerScores("scores.dat", scores, &nbScores);
                 initialiserDemo(plateau, &x1, &y1, &x2, &y2,
                                 &x3, &y3, &x4, &y4, &tour, &GameMode, &state);
                 break;
@@ -129,7 +138,13 @@ int main() {
                 } while (choix != 'm' && choix != 'M');
                 break;
             case 4:
-                // Afficher les scores (fonctionnalité à implémenter)
+                // Charger les scores depuis le fichier
+                chargerScores("scores.dat", scores, &nbScores);
+                // Afficher les scores
+                afficherScores(scores, nbScores);
+                printf("Appuyez sur Entrée pour revenir au menu principal...");
+                getchar();
+                getchar(); // Attendre que l'utilisateur appuie sur Entrée
                 break;
             case 5:
                 exit(0);
@@ -157,7 +172,6 @@ int main() {
                         printf("- Déplacez votre pion avec : z/q/s/d.\n");
                         printf("- Appuyez sur 'a' pour placer une barrière.\n");
                         printf("- Appuyez sur 'T' pour sauvegarder.\n");
-                        printf("- Appuyez sur 'Q' pour quitter.\n");
                     } else {
                         printf("\nPlacement barrières :\n");
                         printf("- Déplacez la barrière avec z/q/s/d.\n");
@@ -171,7 +185,6 @@ int main() {
                         printf("- Déplacez votre pion avec les flèches du clavier.\n");
                         printf("- Appuyez sur 'a' pour placer une barrière.\n");
                         printf("- Appuyez sur 'T' pour sauvegarder.\n");
-                        printf("- Appuyez sur 'Q' pour quitter.\n");
                     } else {
                         printf("\nPlacement barrières :\n");
                         printf("- Déplacez la barrière avec les flèches du clavier.\n");
@@ -185,7 +198,6 @@ int main() {
                         printf("- Déplacez votre pion avec : t/f/g/h.\n");
                         printf("- Appuyez sur 'a' pour placer une barrière.\n");
                         printf("- Appuyez sur 'T' pour sauvegarder.\n");
-                        printf("- Appuyez sur 'Q' pour quitter.\n");
                     } else {
                         printf("\nPlacement barrières :\n");
                         printf("- Déplacez la barrière avec t/f/g/h.\n");
@@ -199,7 +211,6 @@ int main() {
                         printf("- Déplacez votre pion avec : i/j/k/l.\n");
                         printf("- Appuyez sur 'a' pour placer une barrière.\n");
                         printf("- Appuyez sur 'T' pour sauvegarder.\n");
-                        printf("- Appuyez sur 'Q' pour quitter.\n");
                     } else {
                         printf("\nPlacement barrières :\n");
                         printf("- Déplacez la barrière avec i/j/k/l.\n");
@@ -211,17 +222,13 @@ int main() {
 
                 input = lireTouche();
 
-                if (input == 'T' || input == 'Q') {
+                if (input == 'T') {
                     sauvegarderPartie("sauvegarde.dat", plateau, x1, y1, x2, y2,
                                       x3, y3, x4, y4, tour, GameMode, &state);
-                    if (input == 'T') {
-                        printf("Partie sauvegardée ! Appuyez sur Entrée pour continuer...");
-                        getchar(); // Consommer le '\n' restant
-                        getchar(); // Attendre que l'utilisateur appuie sur Entrée
-                        continue;
-                    } else if (input == 'Q') {
-                        break;
-                    }
+                    printf("Partie sauvegardée ! Appuyez sur Entrée pour continuer...");
+                    getchar(); // Consommer le '\n' restant
+                    getchar(); // Attendre que l'utilisateur appuie sur Entrée
+                    continue;
                 }
 
                 // Gestion des actions selon le joueur courant
@@ -256,6 +263,11 @@ int main() {
                             clearConsole();
                             afficherPlateau(plateau, GameMode, &state, pseudos);
                             afficherEcranVictoire(1, pseudos);
+
+                            // Mettre à jour le score du joueur gagnant
+                            mettreAJourScore(scores, nbScores, pseudos[0].pseudos);
+                            // Sauvegarder les scores mis à jour
+                            sauvegarderScores("scores.dat", scores, nbScores);
 
                             printf("Appuyez sur Entrée pour quitter...");
                             getchar();
@@ -297,6 +309,11 @@ int main() {
                             afficherPlateau(plateau, GameMode, &state, pseudos);
                             afficherEcranVictoire(2, pseudos);
 
+                            // Mettre à jour le score du joueur gagnant
+                            mettreAJourScore(scores, nbScores, pseudos[1].pseudos);
+                            // Sauvegarder les scores mis à jour
+                            sauvegarderScores("scores.dat", scores, nbScores);
+
                             printf("Appuyez sur Entrée pour quitter...");
                             getchar();
                             getchar();
@@ -337,6 +354,11 @@ int main() {
                             afficherPlateau(plateau, GameMode, &state, pseudos);
                             afficherEcranVictoire(3, pseudos);
 
+                            // Mettre à jour le score du joueur gagnant
+                            mettreAJourScore(scores, nbScores, pseudos[2].pseudos);
+                            // Sauvegarder les scores mis à jour
+                            sauvegarderScores("scores.dat", scores, nbScores);
+
                             printf("Appuyez sur Entrée pour quitter...");
                             getchar();
                             getchar();
@@ -376,6 +398,11 @@ int main() {
                             clearConsole();
                             afficherPlateau(plateau, GameMode, &state, pseudos);
                             afficherEcranVictoire(4, pseudos);
+
+                            // Mettre à jour le score du joueur gagnant
+                            mettreAJourScore(scores, nbScores, pseudos[3].pseudos);
+                            // Sauvegarder les scores mis à jour
+                            sauvegarderScores("scores.dat", scores, nbScores);
 
                             printf("Appuyez sur Entrée pour quitter...");
                             getchar();
