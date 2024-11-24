@@ -437,14 +437,15 @@ void initialiserDemo(char plateau[SIZE][SIZE][4], int *x1, int *y1,
     strcpy(plateau[*x2][*y2], "2");
 
     // Placer des barrières pour simuler une partie avancée
-    placerBarriere(plateau, 6, 9, 'H',state->nb_barrieres);
-    placerBarriere(plateau, 8, 7, 'V', state->nb_barrieres);
-    placerBarriere(plateau, 10, 9, 'H', state->nb_barrieres);
-    placerBarriere(plateau, 12, 11, 'V', state->nb_barrieres);
+    placerBarriere(plateau, 6, 9, 'H', state);
+    placerBarriere(plateau, 8, 7, 'V', state);
+    placerBarriere(plateau, 10, 9, 'H', state);
+    placerBarriere(plateau, 12, 11, 'V',state);
 
     // Initialiser l'état du jeu
     *tour = 1; // C'est au tour du joueur 1 de jouer
     *state = (GameState){0, 0, 0, 0, 0, 0, 'V'};
+    state->nb_barrieres = 0; // Aucun barrière placée initialement
 }
 
 // Fonction pour saisir et afficher les pseudos des joueurs
@@ -566,4 +567,3 @@ int peutPlacerBarriere(char plateau[SIZE][SIZE][4], int x, int y, char orientati
 
     return valid;
 }
-
