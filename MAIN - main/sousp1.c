@@ -441,7 +441,10 @@ void initialiserDemo(char plateau[SIZE][SIZE][4], int *x1, int *y1,
 // Fonction pour saisir et afficher les pseudos des joueurs
 void Pseudo(Pseudos pseudo[4], int joueur, int *GameMode) {
     for (int i = 0; i < *GameMode; i++) {
-        // fflush(stdin); // Éviter d'utiliser fflush sur stdin, utilise des méthodes plus sûres
+        int c;
+        while ((c = getchar()) != '\n' && c != EOF) {
+            // Consommer le caractère '\n' restant dans le tampon
+        }
 
         printf("Saisir le pseudo du joueur %d (50 caractères maximum) :\n", i + 1);
         fgets(pseudo[i].pseudos, PSEUDO, stdin);
