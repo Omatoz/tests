@@ -182,7 +182,6 @@ void clearConsole() {
     printf("\033[H\033[J");
 #endif
 }
-
 // Fonction pour vérifier s'il y a une barrière entre deux positions
 int barriereEntre(int x1, int y1, int x2, int y2,
                   char plateau[SIZE][SIZE][4]) {
@@ -323,13 +322,17 @@ void deplacerBarriere(int *x, int *y, int direction, char joueur,
 
 // Fonction pour placer définitivement une barrière
 void placerBarriere(char plateau[SIZE][SIZE][4], int x, int y,
-                    char orientation) {
+                    char orientation, GameState *state) {
+    if (state->nb_barrieres >= 20) {
+        printf("Le nombre maximal de barrières placées est atteind !");
+    }
     if (orientation == 'V') {
         if (x > 0 && x < SIZE - 3) {
             strcpy(plateau[x - 1][y], "B");
             strcpy(plateau[x][y], "B");
             strcpy(plateau[x + 1][y], "B");
             strcpy(plateau[x + 2][y], "B");
+            state->nb_barrieres++;
         }
     } else if (orientation == 'H') {
         if (y > 0 && y < SIZE - 3) {
@@ -337,9 +340,12 @@ void placerBarriere(char plateau[SIZE][SIZE][4], int x, int y,
             strcpy(plateau[x][y], "B");
             strcpy(plateau[x][y + 1], "B");
             strcpy(plateau[x][y + 2], "B");
+            state->nb_barrieres++;
         }
     }
 }
+
+
 
 // Fonction pour afficher l'écran de victoire
 void afficherEcranVictoire(int joueur, Pseudos pseudos[4]) {
@@ -430,10 +436,10 @@ void initialiserDemo(char plateau[SIZE][SIZE][4], int *x1, int *y1,
     strcpy(plateau[*x2][*y2], "2");
 
     // Placer des barrières pour simuler une partie avancée
-    placerBarriere(plateau, 6, 9, 'H');
-    placerBarriere(plateau, 8, 7, 'V');
-    placerBarriere(plateau, 10, 9, 'H');
-    placerBarriere(plateau, 12, 11, 'V');
+    placerBarriere(plateau, 6, 9, 'H',state->nb_barrieres);
+    placerBarriere(plateau, 8, 7, 'V', state->nb_barrieres);
+    placerBarriere(plateau, 10, 9, 'H', state->nb_barrieres);
+    placerBarriere(plateau, 12, 11, 'V', state->nb_barrieres);
 
     // Initialiser l'état du jeu
     *tour = 1; // C'est au tour du joueur 1 de jouer
@@ -447,22 +453,24 @@ void Pseudo(Pseudos pseudo[4], int joueur, int *GameMode) {
         while ((c = getchar()) != '\n' && c != EOF) {
             // Consommer le caractère '\n' restant dans le tampon
         }
-
-        printf("Saisir le pseudo du joueur %d (50 caractères maximum) :\n", i + 1);
+        printf("\n");
+        printf("\n");
+        printf("                                            Saisir le pseudo du joueur %d (50 caractères maximum) :", i + 1);
         fgets(pseudo[i].pseudos, PSEUDO, stdin);
-
         // Supprimer le caractère '\n' si présent
         size_t len = strlen(pseudo[i].pseudos);
         if (len > 0 && pseudo[i].pseudos[len - 1] == '\n') {
             pseudo[i].pseudos[len - 1] = '\0';
         }
     }
-
-    printf("\nPseudos enregistrés :\n");  // Vérification pour savoir si les pseudos sont bien enregistrés
+    printf("\n");
+    printf("\n                                                        Pseudos enregistrés :\n");  // Vérification pour savoir si les pseudos sont bien enregistrés
     for (int i = 0; i < *GameMode; i++) {
-        printf("Joueur %d: %s\n", i + 1, pseudo[i].pseudos);
+
+        printf("                                                        Joueur %d: %s\n", i + 1, pseudo[i].pseudos);
     }
-    printf("Appuyez sur entrer pour commencer à jouer.\n");
+    printf("\n");
+    printf("                                                        Appuyez sur entrer pour commencer à jouer.\n");
     getchar(); // Attendre que l'utilisateur appuie sur Entrée
 }
 
