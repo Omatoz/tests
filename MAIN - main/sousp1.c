@@ -1,6 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "header.h"
+
+#ifdef _WIN32
+#include <conio.h>
+#include <windows.h>
+#else
+#include <termios.h>
+#include <unistd.h>
+#endif
 
 // Fonction pour initialiser le plateau
 void initialiserPlateau(char plateau[SIZE][SIZE][4]) {
@@ -133,19 +142,19 @@ void afficherPlateau(char plateau[SIZE][SIZE][4], int GameMode, GameState *state
         if (i == 1) {
             printf("   Joueur 1 : %s (Pion BLEU)", pseudos[0].pseudos);
         } else if (i == 2) {
-            printf("   Barrières restantes: %d", 5-state->nb_barrieres);
+            printf("   Barrières restantes: %d", state->nb_barrieres1);
         } else if (i == 5) {
             printf("   Joueur 2 : %s (Pion ROUGE)", pseudos[1].pseudos);
         } else if (i == 6) {
-            printf("   Barrières restantes: %d", 5-state->nb_barrieres);
+            printf("   Barrières restantes: %d", state->nb_barrieres2);
         } else if (i == 9 && GameMode == 4) {
             printf("   Joueur 3 : %s (Pion VERT)", pseudos[2].pseudos);
         } else if (i == 10 && GameMode == 4) {
-            printf("   Barrières restantes: %d", 5-state->nb_barrieres);
+            printf("   Barrières restantes: %d", state->nb_barrieres3);
         } else if (i == 13 && GameMode == 4) {
             printf("   Joueur 4 : %s (Pion JAUNE)", pseudos[3].pseudos);
         } else if (i == 14 && GameMode == 4) {
-            printf("   Barrières restantes: %d", 5-state->nb_barrieres);
+            printf("   Barrières restantes: %d", state->nb_barrieres4);
         }
         printf("\n");
     }
@@ -347,17 +356,30 @@ void deplacerBarriere(int *x, int *y, int direction, char joueur,
 
 // Fonction pour placer définitivement une barrière
 void placerBarriere(char plateau[SIZE][SIZE][4], int x, int y,
-                    char orientation, GameState *state) {
-    if (state->nb_barrieres >= 20) {
-        printf("Le nombre maximal de barrières placées est atteint !");
+                    char orientation, GameState *state, int joueur) {
+    int *nb_barrieres_joueur;
+
+    // Sélection du compteur de barrières en fonction du joueur
+    switch (joueur) {
+        case 1: nb_barrieres_joueur = &state->nb_barrieres1; break;
+        case 2: nb_barrieres_joueur = &state->nb_barrieres2; break;
+        case 3: nb_barrieres_joueur = &state->nb_barrieres3; break;
+        case 4: nb_barrieres_joueur = &state->nb_barrieres4; break;
+        default: return;
     }
+
+    if (*nb_barrieres_joueur <= 0) {
+        printf("Vous n'avez plus de barrières à placer !\n");
+        return;
+    }
+
     if (orientation == 'V') {
         if (x > 0 && x < SIZE - 3) {
             strcpy(plateau[x - 1][y], "B");
             strcpy(plateau[x][y], "B");
             strcpy(plateau[x + 1][y], "B");
             strcpy(plateau[x + 2][y], "B");
-            state->nb_barrieres++;
+            (*nb_barrieres_joueur)--;
         }
     } else if (orientation == 'H') {
         if (y > 0 && y < SIZE - 3) {
@@ -365,12 +387,10 @@ void placerBarriere(char plateau[SIZE][SIZE][4], int x, int y,
             strcpy(plateau[x][y], "B");
             strcpy(plateau[x][y + 1], "B");
             strcpy(plateau[x][y + 2], "B");
-            state->nb_barrieres++;
+            (*nb_barrieres_joueur)--;
         }
     }
 }
-
-
 
 // Fonction pour afficher l'écran de victoire
 void afficherEcranVictoire(int joueur, Pseudos pseudos[4]) {
@@ -460,19 +480,19 @@ void initialiserDemo(char plateau[SIZE][SIZE][4], int *x1, int *y1,
     strcpy(plateau[*x1][*y1], "1");
     strcpy(plateau[*x2][*y2], "2");
 
-    // Placer des barrières pour simuler une partie avancée
-    placerBarriere(plateau, 6, 9, 'H', state);
-    placerBarriere(plateau, 8, 7, 'V', state);
-    placerBarriere(plateau, 10, 9, 'H', state);
-    placerBarriere(plateau, 12, 11, 'V', state);
-
     // Initialiser l'état du jeu
     *tour = 1; // C'est au tour du joueur 1 de jouer
-    *state = (GameState){0, 0, 0, 0, 0, 0, 'V'};
+    *state = (GameState){0, 0, 0, 0, 0, 0, 'V', 5, 5, 5, 5};
+
+    // Placer des barrières pour simuler une partie avancée
+    placerBarriere(plateau, 6, 9, 'H', state, 1);
+    placerBarriere(plateau, 8, 7, 'V', state, 2);
+    placerBarriere(plateau, 10, 9, 'H', state, 1);
+    placerBarriere(plateau, 12, 11, 'V', state, 2);
 }
 
 // Fonction pour saisir et afficher les pseudos des joueurs
-void Pseudo(Pseudos pseudo[4], int joueur, int *GameMode) {
+void Pseudo(Pseudos pseudos[4], int *GameMode) {
     for (int i = 0; i < *GameMode; i++) {
         int c;
         while ((c = getchar()) != '\n' && c != EOF) {
@@ -481,18 +501,18 @@ void Pseudo(Pseudos pseudo[4], int joueur, int *GameMode) {
         printf("\n");
         printf("\n");
         printf("                                            Saisir le pseudo du joueur %d (50 caractères maximum) :", i + 1);
-        fgets(pseudo[i].pseudos, PSEUDO, stdin);
+        fgets(pseudos[i].pseudos, PSEUDO, stdin);
         // Supprimer le caractère '\n' si présent
-        size_t len = strlen(pseudo[i].pseudos);
-        if (len > 0 && pseudo[i].pseudos[len - 1] == '\n') {
-            pseudo[i].pseudos[len - 1] = '\0';
+        size_t len = strlen(pseudos[i].pseudos);
+        if (len > 0 && pseudos[i].pseudos[len - 1] == '\n') {
+            pseudos[i].pseudos[len - 1] = '\0';
         }
     }
     printf("\n");
     printf("\n                                                        Pseudos enregistrés :\n");  // Vérification pour savoir si les pseudos sont bien enregistrés
     for (int i = 0; i < *GameMode; i++) {
 
-        printf("                                                        Joueur %d: %s\n", i + 1, pseudo[i].pseudos);
+        printf("                                                        Joueur %d: %s\n", i + 1, pseudos[i].pseudos);
     }
     printf("\n");
     printf("                                                        Appuyez sur entrer pour commencer à jouer.\n");
@@ -501,93 +521,12 @@ void Pseudo(Pseudos pseudo[4], int joueur, int *GameMode) {
 
 // Fonction pour vérifier si un chemin est valide pour un joueur
 int estCheminValide(char plateau[SIZE][SIZE][4], int startX, int startY, int targetRow) {
-    int visited[SIZE][SIZE];
-    memset(visited, 0, sizeof(visited));
-    int queue[SIZE * SIZE][2];
-    int front = 0, rear = 0;
-
-    // Enfiler la position de départ
-    queue[rear][0] = startX;
-    queue[rear][1] = startY;
-    rear++;
-    visited[startX][startY] = 1;
-
-    while (front < rear) {
-        int x = queue[front][0];
-        int y = queue[front][1];
-        front++;
-
-        // Vérifier si on a atteint la ligne cible
-        if (x == targetRow) {
-            return 1; // Chemin valide trouvé
-        }
-
-        // Vérifier les voisins (haut, bas, gauche, droite)
-        int directions[4][2] = {{-2, 0}, {2, 0}, {0, -2}, {0, 2}};
-        for (int i = 0; i < 4; i++) {
-            int newX = x + directions[i][0];
-            int newY = y + directions[i][1];
-
-            // Vérifier si le mouvement est valide
-            if (newX >= 0 && newX < SIZE && newY >= 0 && newY < SIZE &&
-                !visited[newX][newY] &&
-                strcmp(plateau[(x + newX) / 2][(y + newY) / 2], "B") != 0 && // Pas de barrière entre les cases
-                (strcmp(plateau[newX][newY], " ") == 0 || strchr("1234", plateau[newX][newY][0]) != NULL)) { // Case libre ou objectif
-                queue[rear][0] = newX;
-                queue[rear][1] = newY;
-                rear++;
-                visited[newX][newY] = 1;
-            }
-        }
-    }
-
-    return 0; // Aucun chemin trouvé
+    return 1; // Désactivation de la vérification du chemin
 }
 
-// Fonction pour vérifier si une barrière peut être placée sans bloquer les chemins des joueurs
+// Fonction pour vérifier si une barrière peut être placée (désactivée)
 int peutPlacerBarriere(char plateau[SIZE][SIZE][4], int x, int y, char orientation,
                        int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int GameMode) {
-    char temp_plateau[SIZE][SIZE][4];
-
-    // Copier plateau dans temp_plateau
-    for(int i=0;i<SIZE;i++) {
-        for(int j=0;j<SIZE;j++) {
-            strcpy(temp_plateau[i][j], plateau[i][j]);
-        }
-    }
-
-    // Placer la barrière sur temp_plateau
-    if (orientation == 'V') {
-        if (x -1 <0 || x +2 >= SIZE) {
-            return 0; // Hors limites
-        }
-        strcpy(temp_plateau[x -1][y], "B");
-        strcpy(temp_plateau[x][y], "B");
-        strcpy(temp_plateau[x +1][y], "B");
-        strcpy(temp_plateau[x +2][y], "B");
-    } else if (orientation == 'H') {
-        if (y -1 <0 || y +2 >= SIZE) {
-            return 0; // Hors limites
-        }
-        strcpy(temp_plateau[x][y -1], "B");
-        strcpy(temp_plateau[x][y], "B");
-        strcpy(temp_plateau[x][y +1], "B");
-        strcpy(temp_plateau[x][y +2], "B");
-    } else {
-        return 0; // Orientation invalide
-    }
-
-    // Vérifier les chemins pour chaque joueur
-    int valid = 1;
-    if (!estCheminValide(temp_plateau, x1, y1, SIZE -1)) valid = 0; // Joueur 1
-    if (!estCheminValide(temp_plateau, x2, y2, 0)) valid = 0;       // Joueur 2
-    if (GameMode >=3) {
-        if (!estCheminValide(temp_plateau, x3, y3, SIZE -1)) valid = 0; // Joueur 3
-    }
-    if (GameMode ==4) {
-        if (!estCheminValide(temp_plateau, x4, y4, 0)) valid = 0;       // Joueur 4
-    }
-
-    return valid;
+    // Autoriser toujours le placement de la barrière
+    return 1;
 }
-
