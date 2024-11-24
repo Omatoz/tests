@@ -74,6 +74,7 @@ int main() {
                     printf("                                                        Mode 4 - 4 Joueurs\n");
                     printf("\n");
                     printf("                                                                  Votre choix : ");
+
                     scanf("%d", &GameMode);
                     if (GameMode != 2 && GameMode != 4) {
                         printf("Erreur ! Veuillez choisir un mode de jeu valide.\n\n");
@@ -105,20 +106,29 @@ int main() {
             break;
             case 3:
                 clearConsole(); // Effacer la console
-                printf("\n QUORIDOR\n");
+                printf("\n");
+                printf("\n");
+                printf("                        *******      **     **     *******     *******     **   *******       *******     *******  \n");
+                printf("                       **/////**    /**    /**    **/////**   /**////**   /**  /**////**     **/////**   /**////** \n");
+                printf("                      **     //**   /**    /**   **     //**  /**   /**   /**  /**    /**   **     //**  /**   /** \n");
+                printf("                     /**      /**   /**    /**  /**      /**  /*******    /**  /**    /**  /**      /**  /*******  \n");
+                printf("                     /**    **/**   /**    /**  /**      /**  /**///**    /**  /**    /**  /**      /**  /**///**  \n");
+                printf("                     //**  // **    /**    /**  //**     **   /**  //**   /**  /**    **   //**     **   /**  //** \n");
+                printf("                      //******* **  //*******    //*******    /**   //**  /**  /*******     //*******    /**   //**\n");
+                printf("                       /////// //    ///////      ///////     //     //   //   ///////       ///////     //     // \n");
+                printf("\n");
+                printf("\n");
+                printf("\n");
+                printf("\n");
                 printf("\n1. BUT DU JEU\n");
                 printf("\nLe jeu du Quoridor est un jeu de réflexion où le but est d'atteindre le premier la ligne opposé.\nLes joueurs jouent chacun leur tour et ont la possibilité d'effectuer une des deux actions possibles : Avancer son pion ou poser une barrière.\n");
                 printf("\n2. REGLES DU JEU\n");
-                printf("\n");
-                printf("A. REGLE POUR 2 JOUEURS\nEn début de partie, les barrières sont remisées dans leur zone de stockage : 10 barrières par joueur.\nChaque joueur pose son pion au centre de sa ligne de départ.\nUn tirage au sort détermine qui commence.\n");
-                printf("\n");
-                printf("B. REGLE POUR 4 JOUEURS\nEn début de partie, les 4 pions sont disposés au centre de chacun des 4 cotés du plateau et chaque joueur dispose de 5 barrières.\nLes règles sont strictement identiques, mais on ne peut sauter plus d’un pion à la fois\n");
-                printf("\n");
-                printf("3. DEROULEMENT DE LA PARTIE\nA tour de rôle, chaque joueur choisit de déplacer son pion ou de poser une de ses barrières.\nLorsqu’il n’a plus de barrières, un joueur est obligé de déplacer son pion.\n");
-                printf("\n");
+                printf("\nA. REGLE POUR 2 JOUEURS\nEn début de partie, les barrières sont remisées dans leur zone de stockage : 10 barrières par joueur.\nChaque joueur pose son pion au centre de sa ligne de départ.\nUn tirage au sort détermine qui commence.\n");
+                printf("\nB. REGLE POUR 4 JOUEURS\nEn début de partie, les 4 pions sont disposés au centre de chacun des 4 cotés du plateau et chaque joueur dispose de 5 barrières.\nLes règles sont strictement identiques, mais on ne peut sauter plus d’un pion à la fois\n");
+                printf("\n3. DEROULEMENT DE LA PARTIE\nA tour de rôle, chaque joueur choisit de déplacer son pion ou de poser une de ses barrières.\nLorsqu’il n’a plus de barrières, un joueur est obligé de déplacer son pion.\n");
                 printf("\n1. Déplacement des pions:\nLes pions se déplacent d’une case, horizontalement ou verticalement, en avant ou en arrière, les barrières doivent être contournées.\n");
                 printf("\n2. Pose des barrières:\nUne barrière doit être posée exactement entre 2 blocs de 2 cases.\nLa pose des barrières a pour but de se créer son propre chemin ou de ralentir.\nl’adversaire, mais il est interdit de lui fermer totalement l’accès à sa ligne de but: il faut toujours lui laisser une solution.\n");
-                printf("\n3. Face à face:\nQuand les 2 pions se retrouvent en vis-à-vis sur 2 cases voisines non séparées par une barrière, \nle joueur dont c’est le tour peut sauter son adversaire et se placer derrière lui.\nSi une barrière est située derrière le pion, le joueur peut choisir de bifurquer à droite ou à gauche.\n");
+                printf("\n3. Face à face:\nQuand les 2 pions se retrouvent en vis-à-vis sur 2 cases voisines non séparées par une barrière, le joueur dont c’est le tour peut sauter son adversaire et se placer derrière lui.\nSi une barrière est située derrière le pion, le joueur peut choisir de bifurquer à droite ou à gauche.\n");
                 printf("\nFIN DE PARTIE\nLe premier joueur qui atteint une des 9 cases de la ligne opposée à sa ligne de départ gagne la partie.\n");
                 printf("\nDUREE DE PARTIE\nLe jeu dure de 10 à 20 minutes.\n");
                 do {

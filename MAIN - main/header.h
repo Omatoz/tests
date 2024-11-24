@@ -79,3 +79,4 @@ void initialiserDemo(char plateau[SIZE][SIZE][4], int *x1, int *y1,
 void Pseudo(Pseudos pseudo[4], int joueur, int *GameMode);
 
 #endif // HEADER_H
+
