@@ -55,14 +55,15 @@ typedef struct {
     char pseudos[PSEUDO];
 } Pseudos;
 
-
 // Déclarations des fonctions
 void initialiserPlateau(char plateau[SIZE][SIZE][4]);
 void afficherPlateau(char plateau[SIZE][SIZE][4], int Gamemode, GameState *state, Pseudos pseudos[]);
 int lireTouche();
 void clearConsole();
 int barriereEntre(int x1, int y1, int x2, int y2, char plateau[SIZE][SIZE][4]);
-void deplacerPion(char plateau[SIZE][SIZE][4], int *x, int *y, int direction, char joueur);
+void deplacerPion(char plateau[SIZE][SIZE][4], int *x, int *y, char direction, char joueur,
+                  int x1, int y1, int x2, int y2,
+                  int x3, int y3, int x4, int y4, int GameMode);
 void deplacerBarriere(int *x, int *y, int direction, char joueur, GameState *state);
 void placerBarriere(char plateau[SIZE][SIZE][4], int x, int y, char orientation, GameState *state, int joueur);
 int estCheminValide(char plateau[SIZE][SIZE][4], int startX, int startY, int targetRow);
