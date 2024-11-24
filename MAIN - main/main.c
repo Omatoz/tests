@@ -51,6 +51,23 @@ int main() {
             initialiserDemo(plateau, &x1, &y1, &x2, &y2,
                             &x3, &y3, &x4, &y4, &tour, &GameMode, &state);
         } else if (choix == 3) {
+            printf("\n QUORIDOR\n");
+            printf("\n1. BUT DU JEU\n");
+            printf("\nLe jeu du Quoridor est un jeu de réflexion où le but est d'atteindre le premier la ligne opposé.\nLes joueurs jouent chacun leur tour et ont la possibilité d'effectuer une des deux actions possibles : Avancer son pion ou poser une barrière.\n");
+            printf("\n2. REGLES DU JEU\n");
+            printf("A. REGLE POUR 2 JOUEURS\nEn début de partie, les barrières sont remisées dans leur zone de stockage : 10 barrières par joueur.\nChaque joueur pose son pion au centre de sa ligne de départ.\nUn tirage au sort détermine qui commence.");
+            printf("B. REGLE POUR 4 JOUEURS\nEn début de partie, les 4 pions sont disposés au centre de chacun des 4 cotés du plateau et chaque joueur dispose de 5 barrières.\nLes règles sont strictement identiques, mais on ne peut sauter plus d’un pion à la fois");
+            printf("3. DEROULEMENT DE LA PARTIE\nA tour de rôle, chaque joueur choisit de déplacer son pion ou de poser une de ses barrières.\nLorsqu’il n’a plus de barrières, un joueur est obligé de déplacer son pion.\n");
+            printf("\n1. Déplacement des pions:\nLes pions se déplacent d’une case, horizontalement ou verticalement, en avant ou en arrière, les barrières doivent être contournées.\n");
+            printf("\n2. Pose des barrières:\nUne barrière doit être posée exactement entre 2 blocs de 2 cases.\nLa pose des barrières a pour but de se créer son propre chemin ou de ralentir.\nl’adversaire, mais il est interdit de lui fermer totalement l’accès à sa ligne de but: il faut toujours lui laisser une solution.\n");
+            printf("\n3. Face à face:\nQuand les 2 pions se retrouvent en vis-à-vis sur 2 cases voisines non séparées par une barrière, le joueur dont c’est le tour peut sauter son adversaire et se placer derrière lui.\nSi une barrière est située derrière le pion, le joueur peut choisir de bifurquer à droite ou à gauche.\n");
+            printf("\nFIN DE PARTIE\nLe premier joueur qui atteint une des 9 cases de la ligne opposée à sa ligne de départ gagne la partie.\n");
+            printf("\nDUREE DE PARTIE\nLe jeu dure de 10 à 20 minutes.\n");
+            printf("\nAPPUYEZ SUR Q POUR QUITTER\n");
+            scanf("%c", &choix);
+            if (choix == 'q' || choix == 'Q') {
+                exit(0);
+            }
             /// AJOUTER AIDE + POSSIBILITE RETOUR MENU APRES LECTURE
         } else if (choix == 4) {
             // AJOUTER LA POSSIBILITE D'AFFICHER LES SCORES + POSSIBILITE RETOUR MENU APRES LECTURE
