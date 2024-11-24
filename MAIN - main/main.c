@@ -19,37 +19,43 @@ int main() {
     SetConsoleOutputCP(CP_UTF8);
 #endif
 
-    int choix = 0;
-    printf("              *******      **     **     *******     *******     **   *******       *******     *******  \n");
-    printf("             **/////**    /**    /**    **/////**   /**////**   /**  /**////**     **/////**   /**////** \n");
-    printf("            **     //**   /**    /**   **     //**  /**   /**   /**  /**    /**   **     //**  /**   /** \n");
-    printf("           /**      /**   /**    /**  /**      /**  /*******    /**  /**    /**  /**      /**  /*******  \n");
-    printf("           /**    **/**   /**    /**  /**      /**  /**///**    /**  /**    /**  /**      /**  /**///**  \n");
-    printf("           //**  // **    /**    /**  //**     **   /**  //**   /**  /**    **   //**     **   /**  //** \n");
-    printf("            //******* **  //*******    //*******    /**   //**  /**  /*******     //*******    /**   //**\n");
-    printf("             /////// //    ///////      ///////     //     //   //   ///////       ///////     //     // \n");
-    printf("\n");
-    printf("\n");
-    printf("Choisissez une option :\n");
-    printf("0: COMMENCER UNE NOUVELLE PARTIE\n");
-    printf("1: CHARGER UNE PARTIE SAUVEGARDEE\n");
-    printf("2: CHARGER LA PARTIE DE DEMONSTRATION\n");
-    printf("3: QUITTER\n");
-    printf("Votre choix : ");
-    scanf("%d", &choix);
+        int choix = 0;
+        printf("              *******      **     **     *******     *******     **   *******       *******     *******  \n");
+        printf("             **/////**    /**    /**    **/////**   /**////**   /**  /**////**     **/////**   /**////** \n");
+        printf("            **     //**   /**    /**   **     //**  /**   /**   /**  /**    /**   **     //**  /**   /** \n");
+        printf("           /**      /**   /**    /**  /**      /**  /*******    /**  /**    /**  /**      /**  /*******  \n");
+        printf("           /**    **/**   /**    /**  /**      /**  /**///**    /**  /**    /**  /**      /**  /**///**  \n");
+        printf("           //**  // **    /**    /**  //**     **   /**  //**   /**  /**    **   //**     **   /**  //** \n");
+        printf("            //******* **  //*******    //*******    /**   //**  /**  /*******     //*******    /**   //**\n");
+        printf("             /////// //    ///////      ///////     //     //   //   ///////       ///////     //     // \n");
+        printf("\n");
+        printf("\n");
+        printf("Choisissez une option :\n");
+        printf("0. COMMENCER UNE NOUVELLE PARTIE\n");
+        printf("1. CHARGER UNE PARTIE SAUVEGARDEE\n");
+        printf("2. CHARGER LA PARTIE DE DEMONSTRATION\n");
+        printf("3. AFFICHER L'AIDE\n");
+        printf("4. AFFICHER LES SCORES\n");
+        printf("5. QUITTER\n");
+        printf("Votre choix : ");
+        scanf("%d", &choix);
 
-    // Consommer le caractère '\n' restant dans le tampon
-    int c;
-    while ((c = getchar()) != '\n' && c != EOF);
+        // Consommer le caractère '\n' restant dans le tampon
+        int c;
+        while ((c = getchar()) != '\n' && c != EOF);
 
-    if (choix == 1) {
-        chargerPartie("sauvegarde.dat", plateau, &x1, &y1, &x2, &y2,
-                      &x3, &y3, &x4, &y4, &tour, &GameMode, &state);
-    } else if (choix == 2) {
-        initialiserDemo(plateau, &x1, &y1, &x2, &y2,
-                        &x3, &y3, &x4, &y4, &tour, &GameMode, &state);
-    } else if (choix == 3) {
-        exit(0);
+        if (choix == 1) {
+            chargerPartie("sauvegarde.dat", plateau, &x1, &y1, &x2, &y2,
+                          &x3, &y3, &x4, &y4, &tour, &GameMode, &state);
+        } else if (choix == 2) {
+            initialiserDemo(plateau, &x1, &y1, &x2, &y2,
+                            &x3, &y3, &x4, &y4, &tour, &GameMode, &state);
+        } else if (choix == 3) {
+            /// AJOUTER AIDE + POSSIBILITE RETOUR MENU APRES LECTURE
+        } else if (choix == 4) {
+            // AJOUTER LA POSSIBILITE D'AFFICHER LES SCORES + POSSIBILITE RETOUR MENU APRES LECTURE
+        } else if (choix == 5) {
+            exit(0);
     } else if (choix == 0) {
         // Initialisation des variables pour une nouvelle partie
         x1 = 1; y1 = SIZE / 2;
