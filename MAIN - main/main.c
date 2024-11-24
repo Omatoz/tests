@@ -91,8 +91,7 @@ int main() {
             scanf("%d", &GameMode);
             if (GameMode != 2 && GameMode != 4) {
                 printf("Erreur ! Veuillez choisir un mode de jeu valide.\n\n");
-            }
-            if(GameMode == 2 || GameMode ==4){
+            } else if (GameMode == 2 || GameMode == 4){
                 Pseudo(pseudos, GameMode, &GameMode);
             }
         } while (GameMode != 2 && GameMode != 4);
