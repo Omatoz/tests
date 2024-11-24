@@ -157,6 +157,7 @@ int main() {
                         printf("- Déplacez votre pion avec : z/q/s/d.\n");
                         printf("- Appuyez sur 'a' pour placer une barrière.\n");
                         printf("- Appuyez sur 'T' pour sauvegarder.\n");
+                        printf("- Appuyez sur 'Q' pour quitter.\n");
                     } else {
                         printf("\nPlacement barrières :\n");
                         printf("- Déplacez la barrière avec z/q/s/d.\n");
@@ -170,6 +171,7 @@ int main() {
                         printf("- Déplacez votre pion avec les flèches du clavier.\n");
                         printf("- Appuyez sur 'a' pour placer une barrière.\n");
                         printf("- Appuyez sur 'T' pour sauvegarder.\n");
+                        printf("- Appuyez sur 'Q' pour quitter.\n");
                     } else {
                         printf("\nPlacement barrières :\n");
                         printf("- Déplacez la barrière avec les flèches du clavier.\n");
@@ -183,6 +185,7 @@ int main() {
                         printf("- Déplacez votre pion avec : t/f/g/h.\n");
                         printf("- Appuyez sur 'a' pour placer une barrière.\n");
                         printf("- Appuyez sur 'T' pour sauvegarder.\n");
+                        printf("- Appuyez sur 'Q' pour quitter.\n");
                     } else {
                         printf("\nPlacement barrières :\n");
                         printf("- Déplacez la barrière avec t/f/g/h.\n");
@@ -196,6 +199,7 @@ int main() {
                         printf("- Déplacez votre pion avec : i/j/k/l.\n");
                         printf("- Appuyez sur 'a' pour placer une barrière.\n");
                         printf("- Appuyez sur 'T' pour sauvegarder.\n");
+                        printf("- Appuyez sur 'Q' pour quitter.\n");
                     } else {
                         printf("\nPlacement barrières :\n");
                         printf("- Déplacez la barrière avec i/j/k/l.\n");
@@ -207,13 +211,17 @@ int main() {
 
                 input = lireTouche();
 
-                if (input == 'T') {
+                if (input == 'T' || input == 'Q') {
                     sauvegarderPartie("sauvegarde.dat", plateau, x1, y1, x2, y2,
                                       x3, y3, x4, y4, tour, GameMode, &state);
-                    printf("Partie sauvegardée ! Appuyez sur Entrée pour continuer...");
-                    getchar(); // Consommer le '\n' restant
-                    getchar(); // Attendre que l'utilisateur appuie sur Entrée
-                    continue;
+                    if (input == 'T') {
+                        printf("Partie sauvegardée ! Appuyez sur Entrée pour continuer...");
+                        getchar(); // Consommer le '\n' restant
+                        getchar(); // Attendre que l'utilisateur appuie sur Entrée
+                        continue;
+                    } else if (input == 'Q') {
+                        break;
+                    }
                 }
 
                 // Gestion des actions selon le joueur courant
