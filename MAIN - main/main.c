@@ -34,9 +34,7 @@ int main() {
     printf("0: COMMENCER UNE NOUVELLE PARTIE\n");
     printf("1: CHARGER UNE PARTIE SAUVEGARDEE\n");
     printf("2: CHARGER LA PARTIE DE DEMONSTRATION\n");
-    printf("3: AFFICHER L'AIDE\n");
-    printf("4: AFFICHER LES SCORES DES JOUEURS\n");
-    printf("5: QUITTER\n"); // Corrigé pour éviter la duplication de '3'
+    printf("3: QUITTER\n");
     printf("Votre choix : ");
     scanf("%d", &choix);
 
@@ -51,14 +49,6 @@ int main() {
         initialiserDemo(plateau, &x1, &y1, &x2, &y2,
                         &x3, &y3, &x4, &y4, &tour, &GameMode, &state);
     } else if (choix == 3) {
-        // Afficher l'aide
-        printf("Aide non encore implémentée.\n");
-        exit(0);
-    } else if (choix == 4) {
-        // Afficher les scores
-        printf("Scores non encore implémentés.\n");
-        exit(0);
-    } else if (choix == 5) { // Option pour quitter
         exit(0);
     } else if (choix == 0) {
         // Initialisation des variables pour une nouvelle partie
@@ -78,7 +68,8 @@ int main() {
             scanf("%d", &GameMode);
             if (GameMode != 2 && GameMode != 4) {
                 printf("Erreur ! Veuillez choisir un mode de jeu valide.\n\n");
-            } else {
+            }
+            if(GameMode == 2 || GameMode ==4){
                 Pseudo(pseudos, GameMode, &GameMode);
             }
         } while (GameMode != 2 && GameMode != 4);
@@ -95,9 +86,6 @@ int main() {
             strcpy(plateau[x3][y3], "3");
             strcpy(plateau[x4][y4], "4");
         }
-    } else {
-        printf("Choix invalide.\n");
-        exit(0);
     }
 
     tour = (rand() % GameMode) + 1;
@@ -111,6 +99,7 @@ int main() {
         int input;
         printf("C'est à %s de jouer.\n", pseudos[tour-1].pseudos);
 
+        // Afficher les actions possibles selon le joueur et le mode placement
         if (tour == 1) {
             if (state.modePlacement1 == 0) {
                 printf("\nActions possibles :\n");
@@ -176,6 +165,7 @@ int main() {
             continue;
         }
 
+        // Gestion des actions selon le joueur courant
         if (tour == 1) {
             if (state.modePlacement1 == 0 && input == 'a') {
                 state.modePlacement1 = 1;
@@ -184,10 +174,19 @@ int main() {
                 state.orientation = 'V';
             } else if (state.modePlacement1 == 1) {
                 if (input == '\n' || input == '\r') { // Touche Entrée
-                    placerBarriere(plateau, state.barrierX, state.barrierY, state.orientation,
-                                   GameMode, x1, y1, x2, y2, x3, y3, x4, y4);
-                    state.modePlacement1 = 0;
-                    tour = 2;
+                    // Vérifier si la barrière peut être placée
+                    if (peutPlacerBarriere(plateau, state.barrierX, state.barrierY, state.orientation,
+                                           x1, y1, x2, y2, x3, y3, x4, y4, GameMode)) {
+                        placerBarriere(plateau, state.barrierX, state.barrierY, state.orientation);
+                        state.modePlacement1 = 0;
+                        tour = 2;
+                    } else {
+                        printf("Impossible de placer la barrière ici.\n");
+                        printf("Appuyez sur Entrée pour continuer...");
+                        getchar(); // Consommer le '\n' restant
+                        getchar(); // Attendre que l'utilisateur appuie sur Entrée
+                        state.modePlacement1 = 0; // Sortir du mode placement
+                    }
                 } else if (input == 'o' || input == 'O') {
                     state.orientation = (state.orientation == 'V') ? 'H' : 'V';
                 } else {
@@ -217,15 +216,24 @@ int main() {
                 state.orientation = 'V';
             } else if (state.modePlacement2 == 1) {
                 if (input == '\n' || input == '\r') { // Touche Entrée
-                    placerBarriere(plateau, state.barrierX, state.barrierY, state.orientation,
-                                   GameMode, x1, y1, x2, y2, x3, y3, x4, y4);
-                    state.modePlacement2 = 0;
-                    if (GameMode == 2) {
-                        tour = 1;
-                    } else if (GameMode == 4) {
-                        tour = 3;
+                    // Vérifier si la barrière peut être placée
+                    if (peutPlacerBarriere(plateau, state.barrierX, state.barrierY, state.orientation,
+                                           x1, y1, x2, y2, x3, y3, x4, y4, GameMode)) {
+                        placerBarriere(plateau, state.barrierX, state.barrierY, state.orientation);
+                        state.modePlacement2 = 0;
+                        if (GameMode == 2) {
+                            tour = 1;
+                        } else if (GameMode == 4) {
+                            tour = 3;
+                        }
+                    } else {
+                        printf("Impossible de placer la barrière ici.\n");
+                        printf("Appuyez sur Entrée pour continuer...");
+                        getchar(); // Consommer le '\n' restant
+                        getchar(); // Attendre que l'utilisateur appuie sur Entrée
+                        state.modePlacement2 = 0; // Sortir du mode placement
                     }
-                } else if (input == 'o' || input == 'O'){
+                } else if (input == 'o' || input == 'O') {
                     state.orientation = (state.orientation == 'V') ? 'H' : 'V';
                 } else {
                     deplacerBarriere(&state.barrierX, &state.barrierY, input, PLAYER2, &state);
@@ -258,10 +266,19 @@ int main() {
                 state.orientation = 'V';
             } else if (state.modePlacement3 == 1) {
                 if (input == '\n' || input == '\r') { // Touche Entrée
-                    placerBarriere(plateau, state.barrierX, state.barrierY, state.orientation,
-                                   GameMode, x1, y1, x2, y2, x3, y3, x4, y4);
-                    state.modePlacement3 = 0;
-                    tour = 4;
+                    // Vérifier si la barrière peut être placée
+                    if (peutPlacerBarriere(plateau, state.barrierX, state.barrierY, state.orientation,
+                                           x1, y1, x2, y2, x3, y3, x4, y4, GameMode)) {
+                        placerBarriere(plateau, state.barrierX, state.barrierY, state.orientation);
+                        state.modePlacement3 = 0;
+                        tour = 4;
+                    } else {
+                        printf("Impossible de placer la barrière ici.\n");
+                        printf("Appuyez sur Entrée pour continuer...");
+                        getchar(); // Consommer le '\n' restant
+                        getchar(); // Attendre que l'utilisateur appuie sur Entrée
+                        state.modePlacement3 = 0; // Sortir du mode placement
+                    }
                 } else if (input == 'o' || input == 'O') {
                     state.orientation = (state.orientation == 'V') ? 'H' : 'V';
                 } else {
@@ -291,10 +308,19 @@ int main() {
                 state.orientation = 'V';
             } else if (state.modePlacement4 == 1) {
                 if (input == '\n' || input == '\r') { // Touche Entrée
-                    placerBarriere(plateau, state.barrierX, state.barrierY, state.orientation,
-                                   GameMode, x1, y1, x2, y2, x3, y3, x4, y4);
-                    state.modePlacement4 = 0;
-                    tour = 1;
+                    // Vérifier si la barrière peut être placée
+                    if (peutPlacerBarriere(plateau, state.barrierX, state.barrierY, state.orientation,
+                                           x1, y1, x2, y2, x3, y3, x4, y4, GameMode)) {
+                        placerBarriere(plateau, state.barrierX, state.barrierY, state.orientation);
+                        state.modePlacement4 = 0;
+                        tour = 1;
+                    } else {
+                        printf("Impossible de placer la barrière ici.\n");
+                        printf("Appuyez sur Entrée pour continuer...");
+                        getchar(); // Consommer le '\n' restant
+                        getchar(); // Attendre que l'utilisateur appuie sur Entrée
+                        state.modePlacement4 = 0; // Sortir du mode placement
+                    }
                 } else if (input == 'o' || input == 'O') {
                     state.orientation = (state.orientation == 'V') ? 'H' : 'V';
                 } else {
