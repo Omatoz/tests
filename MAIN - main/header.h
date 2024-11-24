@@ -51,8 +51,10 @@ typedef struct {
     int nb_barrieres4;
 } GameState;
 
+// Structure pour les pseudos et les scores des joueurs
 typedef struct {
     char pseudos[PSEUDO];
+    int score;
 } Pseudos;
 
 // Déclarations des fonctions
@@ -69,7 +71,7 @@ void placerBarriere(char plateau[SIZE][SIZE][4], int x, int y, char orientation,
 int estCheminValide(char plateau[SIZE][SIZE][4], int startX, int startY, int targetRow);
 int peutPlacerBarriere(char plateau[SIZE][SIZE][4], int x, int y, char orientation,
                        int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int GameMode);
-void afficherEcranVictoire(int joueur, Pseudos pseudo[4]);
+void afficherEcranVictoire(int joueur, Pseudos pseudos[4]);
 void sauvegarderPartie(const char *nomFichier, char plateau[SIZE][SIZE][4],
                        int x1, int y1, int x2, int y2,
                        int x3, int y3, int x4, int y4,
@@ -81,5 +83,14 @@ void chargerPartie(const char *nomFichier, char plateau[SIZE][SIZE][4],
 void initialiserDemo(char plateau[SIZE][SIZE][4], int *x1, int *y1,
                      int *x2, int *y2, int *x3, int *y3,
                      int *x4, int *y4, int *tour, int *GameMode, GameState *state);
-void Pseudo(Pseudos pseudo[4], int *GameMode);
+
+// Déclarations des fonctions pour la gestion des scores
+void chargerScores(const char *nomFichier, Pseudos scores[], int *nbScores);
+void sauvegarderScores(const char *nomFichier, Pseudos scores[], int nbScores);
+void mettreAJourScore(Pseudos scores[], int nbScores, const char *pseudo);
+void afficherScores(Pseudos scores[], int nbScores);
+
+// Modification de la déclaration de la fonction Pseudo
+void Pseudo(Pseudos pseudosPartie[4], int *GameMode, Pseudos scores[], int *nbScores);
+
 #endif // HEADER_H
