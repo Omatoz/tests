@@ -4,7 +4,6 @@ int main() {
     char plateau[SIZE][SIZE][4];
     int x1, y1, x2, y2, x3, y3, x4, y4;
     int tour;
-    int joueur;
     int GameMode;
     GameState state;
     Pseudos pseudos[4];
@@ -37,7 +36,7 @@ int main() {
     printf("2: CHARGER LA PARTIE DE DEMONSTRATION\n");
     printf("3: AFFICHER L'AIDE\n");
     printf("4: AFFICHER LES SCORES DES JOUEURS\n");
-    printf("3: QUITTER\n");
+    printf("5: QUITTER\n"); // Corrigé pour éviter la duplication de '3'
     printf("Votre choix : ");
     scanf("%d", &choix);
 
@@ -52,6 +51,14 @@ int main() {
         initialiserDemo(plateau, &x1, &y1, &x2, &y2,
                         &x3, &y3, &x4, &y4, &tour, &GameMode, &state);
     } else if (choix == 3) {
+        // Afficher l'aide
+        printf("Aide non encore implémentée.\n");
+        exit(0);
+    } else if (choix == 4) {
+        // Afficher les scores
+        printf("Scores non encore implémentés.\n");
+        exit(0);
+    } else if (choix == 5) { // Option pour quitter
         exit(0);
     } else if (choix == 0) {
         // Initialisation des variables pour une nouvelle partie
@@ -71,8 +78,9 @@ int main() {
             scanf("%d", &GameMode);
             if (GameMode != 2 && GameMode != 4) {
                 printf("Erreur ! Veuillez choisir un mode de jeu valide.\n\n");
+            } else {
+                Pseudo(pseudos, GameMode, &GameMode);
             }
-            Pseudo(pseudos,GameMode,&GameMode);
         } while (GameMode != 2 && GameMode != 4);
 
         // Consommer le caractère '\n' restant dans le tampon
@@ -87,6 +95,9 @@ int main() {
             strcpy(plateau[x3][y3], "3");
             strcpy(plateau[x4][y4], "4");
         }
+    } else {
+        printf("Choix invalide.\n");
+        exit(0);
     }
 
     tour = (rand() % GameMode) + 1;
@@ -101,56 +112,58 @@ int main() {
         printf("C'est à %s de jouer.\n", pseudos[tour-1].pseudos);
 
         if (tour == 1) {
-                if (state.modePlacement1 == 0) {
-                    printf("\nActions possibles :\n");
-                    printf("Déplacez votre pion avec : z/q/s/d.\n");
-                    printf("Appuyez sur 'a' pour placer une barrière.\n");
-                    printf("Appuyez sur la barre espace pour passer votre tour.");
-                    printf("Appuyez sur 'T' pour sauvegarder.\n");
-                } else {
-                    printf("\nPlacement barrières :\n");
-                    printf("Déplacez la barrière avec z/q/s/d.\n");
-                    printf("Changez l'orientation avec 'o'.\n");
-                    printf("Appuyez sur Entrée pour la placer.\n");
-                }
-            } else if (tour == 2) {
-                if (state.modePlacement2 == 0) {
-                    printf("\nActions possibles :\n");
-                    printf("Déplacez votre pion avec les flèches du clavier.\n");
-                    printf("Appuyez sur 'a' pour placer une barrière.\n");
-                    printf("Appuyez sur la barre espace pour passer votre tour.");
-                    printf("Appuyez sur 'T' pour sauvegarder.\n");
-                } else {
-                    printf("\nPlacement barrières :\n");
-                    printf("Déplacez la barrière avec les flèches du clavier.\n");
-                    printf("Changez l'orientation avec 'o'.\n");
-                    printf("Appuyez sur Entrée pour la placer.\n");                }
-            } else if (tour == 3) {
-                if (state.modePlacement3 == 0) {
-                    printf("\nActions possibles :\n");
-                    printf("Déplacez votre pion avec : t/f/g/h.\n");
-                    printf("Appuyez sur 'a' pour placer une barrière.\n");
-                    printf("Appuyez sur la barre espace pour passer votre tour.");
-                    printf("Appuyez sur 'T' pour sauvegarder.\n");
-                } else {
-                    printf("\nPlacement barrières :\n");
-                    printf("Déplacez la barrière avec t/f/g/h.\n");
-                    printf("Changez l'orientation avec 'o'.\n");
-                    printf("Appuyez sur Entrée pour la placer.\n");                }
-            } else if (tour == 4) {
-                if (state.modePlacement4 == 0) {
-                    printf("\nActions possibles :\n");
-                    printf("Déplacez votre pion avec : i/j/k/l.\n");
-                    printf("Appuyez sur 'a' pour placer une barrière.\n");
-                    printf("Appuyez sur la barre espace pour passer votre tour.");
-                    printf("Appuyez sur 'T' pour sauvegarder.\n");
-                } else {
-                    printf("\nPlacement barrières :\n");
-                    printf("Déplacez la barrière avec i/j/k/l.\n");
-                    printf("Changez l'orientation avec 'o'.\n");
-                    printf("Appuyez sur Entrée pour la placer.\n");
-                }
+            if (state.modePlacement1 == 0) {
+                printf("\nActions possibles :\n");
+                printf("Déplacez votre pion avec : z/q/s/d.\n");
+                printf("Appuyez sur 'a' pour placer une barrière.\n");
+                printf("Appuyez sur la barre espace pour passer votre tour.\n");
+                printf("Appuyez sur 'T' pour sauvegarder.\n");
+            } else {
+                printf("\nPlacement barrières :\n");
+                printf("Déplacez la barrière avec z/q/s/d.\n");
+                printf("Changez l'orientation avec 'o'.\n");
+                printf("Appuyez sur Entrée pour la placer.\n");
             }
+        } else if (tour == 2) {
+            if (state.modePlacement2 == 0) {
+                printf("\nActions possibles :\n");
+                printf("Déplacez votre pion avec les flèches du clavier.\n");
+                printf("Appuyez sur 'a' pour placer une barrière.\n");
+                printf("Appuyez sur la barre espace pour passer votre tour.\n");
+                printf("Appuyez sur 'T' pour sauvegarder.\n");
+            } else {
+                printf("\nPlacement barrières :\n");
+                printf("Déplacez la barrière avec les flèches du clavier.\n");
+                printf("Changez l'orientation avec 'o'.\n");
+                printf("Appuyez sur Entrée pour la placer.\n");
+            }
+        } else if (tour == 3) {
+            if (state.modePlacement3 == 0) {
+                printf("\nActions possibles :\n");
+                printf("Déplacez votre pion avec : t/f/g/h.\n");
+                printf("Appuyez sur 'a' pour placer une barrière.\n");
+                printf("Appuyez sur la barre espace pour passer votre tour.\n");
+                printf("Appuyez sur 'T' pour sauvegarder.\n");
+            } else {
+                printf("\nPlacement barrières :\n");
+                printf("Déplacez la barrière avec t/f/g/h.\n");
+                printf("Changez l'orientation avec 'o'.\n");
+                printf("Appuyez sur Entrée pour la placer.\n");
+            }
+        } else if (tour == 4) {
+            if (state.modePlacement4 == 0) {
+                printf("\nActions possibles :\n");
+                printf("Déplacez votre pion avec : i/j/k/l.\n");
+                printf("Appuyez sur 'a' pour placer une barrière.\n");
+                printf("Appuyez sur la barre espace pour passer votre tour.\n");
+                printf("Appuyez sur 'T' pour sauvegarder.\n");
+            } else {
+                printf("\nPlacement barrières :\n");
+                printf("Déplacez la barrière avec i/j/k/l.\n");
+                printf("Changez l'orientation avec 'o'.\n");
+                printf("Appuyez sur Entrée pour la placer.\n");
+            }
+        }
 
         input = lireTouche();
 
@@ -171,7 +184,8 @@ int main() {
                 state.orientation = 'V';
             } else if (state.modePlacement1 == 1) {
                 if (input == '\n' || input == '\r') { // Touche Entrée
-                    placerBarriere(plateau, state.barrierX, state.barrierY, state.orientation);
+                    placerBarriere(plateau, state.barrierX, state.barrierY, state.orientation,
+                                   GameMode, x1, y1, x2, y2, x3, y3, x4, y4);
                     state.modePlacement1 = 0;
                     tour = 2;
                 } else if (input == 'o' || input == 'O') {
@@ -196,14 +210,15 @@ int main() {
                 tour = 2;
             }
         } else if (tour == 2) {
-            if (state.modePlacement2 == 0 && input == 'p') {
+            if (state.modePlacement2 == 0 && input == 'a') {
                 state.modePlacement2 = 1;
                 state.barrierX = x2;
                 state.barrierY = y2;
                 state.orientation = 'V';
             } else if (state.modePlacement2 == 1) {
                 if (input == '\n' || input == '\r') { // Touche Entrée
-                    placerBarriere(plateau, state.barrierX, state.barrierY, state.orientation);
+                    placerBarriere(plateau, state.barrierX, state.barrierY, state.orientation,
+                                   GameMode, x1, y1, x2, y2, x3, y3, x4, y4);
                     state.modePlacement2 = 0;
                     if (GameMode == 2) {
                         tour = 1;
@@ -236,14 +251,15 @@ int main() {
                 }
             }
         } else if (tour == 3) {
-            if (state.modePlacement3 == 0 && input == 'w') {
+            if (state.modePlacement3 == 0 && input == 'a') {
                 state.modePlacement3 = 1;
                 state.barrierX = x3;
                 state.barrierY = y3;
                 state.orientation = 'V';
             } else if (state.modePlacement3 == 1) {
                 if (input == '\n' || input == '\r') { // Touche Entrée
-                    placerBarriere(plateau, state.barrierX, state.barrierY, state.orientation);
+                    placerBarriere(plateau, state.barrierX, state.barrierY, state.orientation,
+                                   GameMode, x1, y1, x2, y2, x3, y3, x4, y4);
                     state.modePlacement3 = 0;
                     tour = 4;
                 } else if (input == 'o' || input == 'O') {
@@ -268,14 +284,15 @@ int main() {
                 tour = 4;
             }
         } else if (tour == 4) {
-            if (state.modePlacement4 == 0 && input == 'n') {
+            if (state.modePlacement4 == 0 && input == 'a') {
                 state.modePlacement4 = 1;
                 state.barrierX = x4;
                 state.barrierY = y4;
                 state.orientation = 'V';
             } else if (state.modePlacement4 == 1) {
                 if (input == '\n' || input == '\r') { // Touche Entrée
-                    placerBarriere(plateau, state.barrierX, state.barrierY, state.orientation);
+                    placerBarriere(plateau, state.barrierX, state.barrierY, state.orientation,
+                                   GameMode, x1, y1, x2, y2, x3, y3, x4, y4);
                     state.modePlacement4 = 0;
                     tour = 1;
                 } else if (input == 'o' || input == 'O') {
@@ -304,4 +321,3 @@ int main() {
 
     return 0;
 }
-
