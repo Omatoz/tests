@@ -45,11 +45,13 @@ typedef struct {
     int barrierX;
     int barrierY;
     char orientation;
+    int nb_barrieres;
 } GameState;
 
 typedef struct {
     char pseudos[PSEUDO];
 } Pseudos;
+
 
 // Déclarations des fonctions
 void initialiserPlateau(char plateau[SIZE][SIZE][4]);
@@ -59,7 +61,7 @@ void clearConsole();
 int barriereEntre(int x1, int y1, int x2, int y2, char plateau[SIZE][SIZE][4]);
 void deplacerPion(char plateau[SIZE][SIZE][4], int *x, int *y, int direction, char joueur);
 void deplacerBarriere(int *x, int *y, int direction, char joueur, GameState *state);
-void placerBarriere(char plateau[SIZE][SIZE][4], int x, int y, char orientation);
+void placerBarriere(char plateau[SIZE][SIZE][4], int x, int y, char orientation, GameState *state);
 int estCheminValide(char plateau[SIZE][SIZE][4], int startX, int startY, int targetRow);
 int peutPlacerBarriere(char plateau[SIZE][SIZE][4], int x, int y, char orientation,
                        int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4, int GameMode);
@@ -76,5 +78,5 @@ void initialiserDemo(char plateau[SIZE][SIZE][4], int *x1, int *y1,
                      int *x2, int *y2, int *x3, int *y3,
                      int *x4, int *y4, int *tour, int *GameMode, GameState *state);
 void Pseudo(Pseudos pseudo[4], int joueur, int *GameMode);
-
 #endif // HEADER_H
+
