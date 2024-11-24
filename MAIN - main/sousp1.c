@@ -55,6 +55,7 @@ void afficherPlateau(char plateau[SIZE][SIZE][4], int GameMode, GameState *state
     printf("             INFORMATIONS JOUEURS\n");
 
     for (int i = 0; i < SIZE; i++) {
+        printf("%2d ", i / 2); // Afficher les numéros de ligne
         for (int j = 0; j < SIZE; j++) {
             char *c = plateau[i][j];
             int isBarrierTemp = 0;
@@ -227,11 +228,36 @@ int barriereEntre(int x1, int y1, int x2, int y2,
     return 0;
 }
 
-// Fonction pour déplacer un pion
+// Fonction pour déplacer un pion avec gestion du saut
 void deplacerPion(char plateau[SIZE][SIZE][4], int *x, int *y,
-                  int direction, char joueur) {
+                  char direction, char joueur,
+                  int x1, int y1, int x2, int y2,
+                  int x3, int y3, int x4, int y4, int GameMode) {
     int newX = *x, newY = *y;
+    int opponentX = -1, opponentY = -1;
+    int opponentFound = 0;
 
+    // Variables pour les positions potentielles des adversaires
+    int oppX[3], oppY[3];
+    int oppCount = 0;
+
+    // Remplir les positions des adversaires en fonction du joueur actuel
+    if (GameMode == 2) {
+        if (joueur == PLAYER1) {
+            oppX[0] = x2; oppY[0] = y2; oppCount = 1;
+        } else if (joueur == PLAYER2) {
+            oppX[0] = x1; oppY[0] = y1; oppCount = 1;
+        }
+    } else if (GameMode == 4) {
+        int idx = 0;
+        if (joueur != PLAYER1) { oppX[idx] = x1; oppY[idx++] = y1; }
+        if (joueur != PLAYER2) { oppX[idx] = x2; oppY[idx++] = y2; }
+        if (joueur != PLAYER3) { oppX[idx] = x3; oppY[idx++] = y3; }
+        if (joueur != PLAYER4) { oppX[idx] = x4; oppY[idx++] = y4; }
+        oppCount = idx;
+    }
+
+    // Calcul du déplacement souhaité
     if (joueur == PLAYER1) {
         if (direction == 'z' && *x > 1) {
             newX -= 2;
@@ -282,13 +308,82 @@ void deplacerPion(char plateau[SIZE][SIZE][4], int *x, int *y,
         }
     }
 
+    // Vérifier s'il y a un pion adverse à la position cible
+    for (int i = 0; i < oppCount; i++) {
+        if (newX == oppX[i] && newY == oppY[i]) {
+            opponentX = oppX[i];
+            opponentY = oppY[i];
+            opponentFound = 1;
+            break;
+        }
+    }
+
+    if (opponentFound) {
+        // Tentative de saut par-dessus l'adversaire
+        int jumpX = opponentX + (opponentX - *x);
+        int jumpY = opponentY + (opponentY - *y);
+
+        // Vérifier les limites du plateau
+        if (jumpX >= 1 && jumpX <= SIZE - 2 && jumpY >= 1 && jumpY <= SIZE - 2) {
+            // Vérifier s'il n'y a pas de barrière entre l'adversaire et la case de saut
+            if (!barriereEntre(opponentX, opponentY, jumpX, jumpY, plateau)) {
+                // Vérifier si la case derrière l'adversaire est libre
+                if (strcmp(plateau[jumpX][jumpY], " ") == 0) {
+                    // Effectuer le saut
+                    strcpy(plateau[*x][*y], " ");
+                    *x = jumpX;
+                    *y = jumpY;
+                    char strJoueur[2] = {joueur, '\0'};
+                    strcpy(plateau[*x][*y], strJoueur);
+                    return;
+                }
+            }
+        }
+        // Si on ne peut pas sauter, vérifier les déplacements diagonaux
+        int deltaX = opponentX - *x;
+        int deltaY = opponentY - *y;
+
+        // Déterminer les mouvements diagonaux possibles
+        int diagX1 = opponentX - deltaY;
+        int diagY1 = opponentY + deltaX;
+
+        int diagX2 = opponentX + deltaY;
+        int diagY2 = opponentY - deltaX;
+
+        // Vérifier les deux diagonales possibles
+        if (diagX1 >= 1 && diagX1 <= SIZE - 2 && diagY1 >= 1 && diagY1 <= SIZE - 2 &&
+            strcmp(plateau[diagX1][diagY1], " ") == 0 &&
+            !barriereEntre(*x, *y, diagX1, diagY1, plateau)) {
+            // Déplacement en diagonale
+            strcpy(plateau[*x][*y], " ");
+            *x = diagX1;
+            *y = diagY1;
+            char strJoueur[2] = {joueur, '\0'};
+            strcpy(plateau[*x][*y], strJoueur);
+            return;
+        }
+        if (diagX2 >= 1 && diagX2 <= SIZE - 2 && diagY2 >= 1 && diagY2 <= SIZE - 2 &&
+            strcmp(plateau[diagX2][diagY2], " ") == 0 &&
+            !barriereEntre(*x, *y, diagX2, diagY2, plateau)) {
+            // Déplacement en diagonale
+            strcpy(plateau[*x][*y], " ");
+            *x = diagX2;
+            *y = diagY2;
+            char strJoueur[2] = {joueur, '\0'};
+            strcpy(plateau[*x][*y], strJoueur);
+            return;
+        }
+        // Si aucun déplacement n'est possible, annuler le mouvement
+        return;
+    }
+
     // Vérifier s'il y a une barrière entre l'ancienne et la nouvelle position
     if (barriereEntre(*x, *y, newX, newY, plateau)) {
         return;
     }
 
-    // Vérifier si la nouvelle case est libre ou un objectif
-    if (strcmp(plateau[newX][newY], " ") == 0 || strchr("1234", plateau[newX][newY][0]) != NULL) {
+    // Vérifier si la nouvelle case est libre
+    if (strcmp(plateau[newX][newY], " ") == 0) {
         strcpy(plateau[*x][*y], " ");
         *x = newX;
         *y = newY;
@@ -297,7 +392,9 @@ void deplacerPion(char plateau[SIZE][SIZE][4], int *x, int *y,
     }
 }
 
-// Fonction pour déplacer une barrière (changement de position lors de la sélection)
+// Les autres fonctions restent inchangées
+
+// Fonction pour déplacer une barrière
 void deplacerBarriere(int *x, int *y, int direction, char joueur,
                       GameState *state) {
     int deltaX = 0, deltaY = 0;
