@@ -16,3 +16,7 @@ Fonctionnalités de base à réspectées :
 -Le déplacement des pions en tenant compte des contraintes.
 -Le placement des barrières en tenant compte des contraintes.
 -L'interuption de partie 
+Le code est à réalisé en prenant en compte les contraintes suivantes :
+-Le jeu se présente sous forme de console
+-Le plateau du jeu de base a 9 lignes et 9 colonnes avec la place de positionner des murs entre eux.
+
