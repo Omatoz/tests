@@ -13,4 +13,6 @@ Fonctionnalités de base à réspectées :
 -Le plateau de jeu et de la partie droite d'information et d'interaction.
 -Le menu 
 -La possibilité de joué à 2 ou 4 joueur.
--
+-Le déplacement des pions en tenant compte des contraintes.
+-Le placement des barrières en tenant compte des contraintes.
+-L'interuption de partie 
