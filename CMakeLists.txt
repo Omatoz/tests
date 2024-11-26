@@ -11,6 +11,7 @@ add_executable(ing1_quoridor_2024_groupe12_8
         "MAIN - main/header.h"
         "MAIN - main/main.c"
         "MAIN - main/sousp1.c"
+        "MAIN - main/Tableau.c"
 )
 
 # Lien avec les bibliothèques Windows (si sur Windows)

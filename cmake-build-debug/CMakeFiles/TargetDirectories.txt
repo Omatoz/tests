@@ -1,0 +1,3 @@
+C:/Users/cazau/OneDrive/Documents/GitHub/tests/cmake-build-debug/CMakeFiles/ing1_quoridor_2024_groupe12_8.dir
+C:/Users/cazau/OneDrive/Documents/GitHub/tests/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/cazau/OneDrive/Documents/GitHub/tests/cmake-build-debug/CMakeFiles/rebuild_cache.dir

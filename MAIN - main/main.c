@@ -9,23 +9,22 @@ int main() {
     int tour;
     int GameMode;
     GameState state;
-    Pseudos pseudos[4];
-    Pseudos scores[100]; // Tableau pour stocker jusqu'à 100 joueurs
+    Joueurs pseudos[4];
+    Joueurs scores[100]; // Tableau pour stocker jusqu'à 100 joueurs
     int nbScores = 0;    // Nombre actuel de joueurs dans les scores
 
     srand(time(NULL));
+
 #ifdef _WIN32
     HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
     DWORD dwMode = 0;
     GetConsoleMode(hOut, &dwMode);
     dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
     SetConsoleMode(hOut, dwMode);
-
     SetConsoleOutputCP(CP_UTF8);
 #endif
 
     int choix;
-
     do {
         // Affichage du menu
         printf("\n");
@@ -93,24 +92,29 @@ int main() {
                 initialiserPlateau(plateau);
                 strcpy(plateau[x1][y1], "1");
                 strcpy(plateau[x2][y2], "2");
+                state = (GameState){0, 0, 0, 0, 0, 0, 'V', 10, 10, 0, 0};
 
                 if (GameMode == 4) {
                     strcpy(plateau[x3][y3], "3");
                     strcpy(plateau[x4][y4], "4");
+                    state = (GameState){0, 0, 0, 0, 0, 0, 'V', 5, 5, 5, 5};
                 }
                 break;
+
             case 1:
                 // Charger les scores depuis le fichier
                 chargerScores("scores.dat", scores, &nbScores);
                 chargerPartie("sauvegarde.dat", plateau, &x1, &y1, &x2, &y2,
-                              &x3, &y3, &x4, &y4, &tour, &GameMode, &state);
+                              &x3, &y3, &x4, &y4, &tour, &GameMode, &state, pseudos);
                 break;
+
             case 2:
                 // Charger les scores depuis le fichier
                 chargerScores("scores.dat", scores, &nbScores);
                 initialiserDemo(plateau, &x1, &y1, &x2, &y2,
                                 &x3, &y3, &x4, &y4, &tour, &GameMode, &state);
                 break;
+
             case 3:
                 clearConsole(); // Effacer la console
                 printf("\n QUORIDOR\n");
@@ -137,6 +141,7 @@ int main() {
                     }
                 } while (choix != 'm' && choix != 'M');
                 break;
+
             case 4:
                 // Charger les scores depuis le fichier
                 chargerScores("scores.dat", scores, &nbScores);
@@ -146,6 +151,7 @@ int main() {
                 getchar();
                 getchar(); // Attendre que l'utilisateur appuie sur Entrée
                 break;
+
             case 5:
                 exit(0);
             default:
@@ -171,7 +177,9 @@ int main() {
                         printf("\nActions possibles :\n");
                         printf("- Déplacez votre pion avec : z/q/s/d.\n");
                         printf("- Appuyez sur 'a' pour placer une barrière.\n");
+                        printf("- Appuyez sur Espace pour passer votre tour.\n");
                         printf("- Appuyez sur 'T' pour sauvegarder.\n");
+                        printf("- Appuyez sur Q pour quitter...");
                     } else {
                         printf("\nPlacement barrières :\n");
                         printf("- Déplacez la barrière avec z/q/s/d.\n");
@@ -184,7 +192,9 @@ int main() {
                         printf("\nActions possibles :\n");
                         printf("- Déplacez votre pion avec les flèches du clavier.\n");
                         printf("- Appuyez sur 'a' pour placer une barrière.\n");
+                        printf("- Appuyez sur Espace pour passer votre tour.\n");
                         printf("- Appuyez sur 'T' pour sauvegarder.\n");
+                        printf("- Appuyez sur Q pour quitter...");
                     } else {
                         printf("\nPlacement barrières :\n");
                         printf("- Déplacez la barrière avec les flèches du clavier.\n");
@@ -197,7 +207,9 @@ int main() {
                         printf("\nActions possibles :\n");
                         printf("- Déplacez votre pion avec : t/f/g/h.\n");
                         printf("- Appuyez sur 'a' pour placer une barrière.\n");
+                        printf("- Appuyez sur Espace pour passer votre tour.\n");
                         printf("- Appuyez sur 'T' pour sauvegarder.\n");
+                        printf("- Appuyez sur Q pour quitter...");
                     } else {
                         printf("\nPlacement barrières :\n");
                         printf("- Déplacez la barrière avec t/f/g/h.\n");
@@ -210,7 +222,9 @@ int main() {
                         printf("\nActions possibles :\n");
                         printf("- Déplacez votre pion avec : i/j/k/l.\n");
                         printf("- Appuyez sur 'a' pour placer une barrière.\n");
+                        printf("- Appuyez sur Espace pour passer votre tour.\n");
                         printf("- Appuyez sur 'T' pour sauvegarder.\n");
+                        printf("- Appuyez sur Q pour quitter...");
                     } else {
                         printf("\nPlacement barrières :\n");
                         printf("- Déplacez la barrière avec i/j/k/l.\n");
@@ -224,13 +238,18 @@ int main() {
 
                 if (input == 'T') {
                     sauvegarderPartie("sauvegarde.dat", plateau, x1, y1, x2, y2,
-                                      x3, y3, x4, y4, tour, GameMode, &state);
+                                      x3, y3, x4, y4, tour, GameMode, &state, pseudos);
                     printf("Partie sauvegardée ! Appuyez sur Entrée pour continuer...");
                     getchar(); // Consommer le '\n' restant
                     getchar(); // Attendre que l'utilisateur appuie sur Entrée
                     continue;
                 }
 
+                if (input == 'Q') {
+                    sauvegarderPartie("sauvegarde.dat", plateau, x1, y1, x2, y2,
+                                      x3, y3, x4, y4, tour, GameMode, &state, pseudos);
+                    break;
+                }
                 // Gestion des actions selon le joueur courant
                 if (tour == 1) {
                     if (state.modePlacement1 == 0 && input == 'a') {
