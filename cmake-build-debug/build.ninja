@@ -63,8 +63,43 @@ build CMakeFiles/ing1_quoridor_2024_groupe12_8.dir/MAIN_-_main/sousp1.c.obj: C_C
   OBJECT_DIR = CMakeFiles\ing1_quoridor_2024_groupe12_8.dir
   OBJECT_FILE_DIR = CMakeFiles\ing1_quoridor_2024_groupe12_8.dir\MAIN_-_main
 
-build CMakeFiles/ing1_quoridor_2024_groupe12_8.dir/MAIN_-_main/Tableau.c.obj: C_COMPILER__ing1_quoridor_2024_groupe12_8_unscanned_Debug C$:/Users/cazau/OneDrive/Documents/GitHub/tests/MAIN$ -$ main/Tableau.c || cmake_object_order_depends_target_ing1_quoridor_2024_groupe12_8
-  DEP_FILE = CMakeFiles\ing1_quoridor_2024_groupe12_8.dir\MAIN_-_main\Tableau.c.obj.d
+build CMakeFiles/ing1_quoridor_2024_groupe12_8.dir/MAIN_-_main/Plateau.c.obj: C_COMPILER__ing1_quoridor_2024_groupe12_8_unscanned_Debug C$:/Users/cazau/OneDrive/Documents/GitHub/tests/MAIN$ -$ main/Plateau.c || cmake_object_order_depends_target_ing1_quoridor_2024_groupe12_8
+  DEP_FILE = CMakeFiles\ing1_quoridor_2024_groupe12_8.dir\MAIN_-_main\Plateau.c.obj.d
+  FLAGS = -g -std=gnu99 -fdiagnostics-color=always
+  INCLUDES = -I"C:/Users/cazau/OneDrive/Documents/GitHub/tests/MAIN - main/sousp1/header"
+  OBJECT_DIR = CMakeFiles\ing1_quoridor_2024_groupe12_8.dir
+  OBJECT_FILE_DIR = CMakeFiles\ing1_quoridor_2024_groupe12_8.dir\MAIN_-_main
+
+build CMakeFiles/ing1_quoridor_2024_groupe12_8.dir/MAIN_-_main/Joueurs.c.obj: C_COMPILER__ing1_quoridor_2024_groupe12_8_unscanned_Debug C$:/Users/cazau/OneDrive/Documents/GitHub/tests/MAIN$ -$ main/Joueurs.c || cmake_object_order_depends_target_ing1_quoridor_2024_groupe12_8
+  DEP_FILE = CMakeFiles\ing1_quoridor_2024_groupe12_8.dir\MAIN_-_main\Joueurs.c.obj.d
+  FLAGS = -g -std=gnu99 -fdiagnostics-color=always
+  INCLUDES = -I"C:/Users/cazau/OneDrive/Documents/GitHub/tests/MAIN - main/sousp1/header"
+  OBJECT_DIR = CMakeFiles\ing1_quoridor_2024_groupe12_8.dir
+  OBJECT_FILE_DIR = CMakeFiles\ing1_quoridor_2024_groupe12_8.dir\MAIN_-_main
+
+build CMakeFiles/ing1_quoridor_2024_groupe12_8.dir/MAIN_-_main/Barriere.c.obj: C_COMPILER__ing1_quoridor_2024_groupe12_8_unscanned_Debug C$:/Users/cazau/OneDrive/Documents/GitHub/tests/MAIN$ -$ main/Barriere.c || cmake_object_order_depends_target_ing1_quoridor_2024_groupe12_8
+  DEP_FILE = CMakeFiles\ing1_quoridor_2024_groupe12_8.dir\MAIN_-_main\Barriere.c.obj.d
+  FLAGS = -g -std=gnu99 -fdiagnostics-color=always
+  INCLUDES = -I"C:/Users/cazau/OneDrive/Documents/GitHub/tests/MAIN - main/sousp1/header"
+  OBJECT_DIR = CMakeFiles\ing1_quoridor_2024_groupe12_8.dir
+  OBJECT_FILE_DIR = CMakeFiles\ing1_quoridor_2024_groupe12_8.dir\MAIN_-_main
+
+build CMakeFiles/ing1_quoridor_2024_groupe12_8.dir/MAIN_-_main/Sauvegarde.c.obj: C_COMPILER__ing1_quoridor_2024_groupe12_8_unscanned_Debug C$:/Users/cazau/OneDrive/Documents/GitHub/tests/MAIN$ -$ main/Sauvegarde.c || cmake_object_order_depends_target_ing1_quoridor_2024_groupe12_8
+  DEP_FILE = CMakeFiles\ing1_quoridor_2024_groupe12_8.dir\MAIN_-_main\Sauvegarde.c.obj.d
+  FLAGS = -g -std=gnu99 -fdiagnostics-color=always
+  INCLUDES = -I"C:/Users/cazau/OneDrive/Documents/GitHub/tests/MAIN - main/sousp1/header"
+  OBJECT_DIR = CMakeFiles\ing1_quoridor_2024_groupe12_8.dir
+  OBJECT_FILE_DIR = CMakeFiles\ing1_quoridor_2024_groupe12_8.dir\MAIN_-_main
+
+build CMakeFiles/ing1_quoridor_2024_groupe12_8.dir/MAIN_-_main/Score.c.obj: C_COMPILER__ing1_quoridor_2024_groupe12_8_unscanned_Debug C$:/Users/cazau/OneDrive/Documents/GitHub/tests/MAIN$ -$ main/Score.c || cmake_object_order_depends_target_ing1_quoridor_2024_groupe12_8
+  DEP_FILE = CMakeFiles\ing1_quoridor_2024_groupe12_8.dir\MAIN_-_main\Score.c.obj.d
+  FLAGS = -g -std=gnu99 -fdiagnostics-color=always
+  INCLUDES = -I"C:/Users/cazau/OneDrive/Documents/GitHub/tests/MAIN - main/sousp1/header"
+  OBJECT_DIR = CMakeFiles\ing1_quoridor_2024_groupe12_8.dir
+  OBJECT_FILE_DIR = CMakeFiles\ing1_quoridor_2024_groupe12_8.dir\MAIN_-_main
+
+build CMakeFiles/ing1_quoridor_2024_groupe12_8.dir/MAIN_-_main/Menu.c.obj: C_COMPILER__ing1_quoridor_2024_groupe12_8_unscanned_Debug C$:/Users/cazau/OneDrive/Documents/GitHub/tests/MAIN$ -$ main/Menu.c || cmake_object_order_depends_target_ing1_quoridor_2024_groupe12_8
+  DEP_FILE = CMakeFiles\ing1_quoridor_2024_groupe12_8.dir\MAIN_-_main\Menu.c.obj.d
   FLAGS = -g -std=gnu99 -fdiagnostics-color=always
   INCLUDES = -I"C:/Users/cazau/OneDrive/Documents/GitHub/tests/MAIN - main/sousp1/header"
   OBJECT_DIR = CMakeFiles\ing1_quoridor_2024_groupe12_8.dir
@@ -78,7 +113,7 @@ build CMakeFiles/ing1_quoridor_2024_groupe12_8.dir/MAIN_-_main/Tableau.c.obj: C_
 #############################################
 # Link the executable ing1_quoridor_2024_groupe12_8.exe
 
-build ing1_quoridor_2024_groupe12_8.exe: C_EXECUTABLE_LINKER__ing1_quoridor_2024_groupe12_8_Debug CMakeFiles/ing1_quoridor_2024_groupe12_8.dir/MAIN_-_main/main.c.obj CMakeFiles/ing1_quoridor_2024_groupe12_8.dir/MAIN_-_main/sousp1.c.obj CMakeFiles/ing1_quoridor_2024_groupe12_8.dir/MAIN_-_main/Tableau.c.obj
+build ing1_quoridor_2024_groupe12_8.exe: C_EXECUTABLE_LINKER__ing1_quoridor_2024_groupe12_8_Debug CMakeFiles/ing1_quoridor_2024_groupe12_8.dir/MAIN_-_main/main.c.obj CMakeFiles/ing1_quoridor_2024_groupe12_8.dir/MAIN_-_main/sousp1.c.obj CMakeFiles/ing1_quoridor_2024_groupe12_8.dir/MAIN_-_main/Plateau.c.obj CMakeFiles/ing1_quoridor_2024_groupe12_8.dir/MAIN_-_main/Joueurs.c.obj CMakeFiles/ing1_quoridor_2024_groupe12_8.dir/MAIN_-_main/Barriere.c.obj CMakeFiles/ing1_quoridor_2024_groupe12_8.dir/MAIN_-_main/Sauvegarde.c.obj CMakeFiles/ing1_quoridor_2024_groupe12_8.dir/MAIN_-_main/Score.c.obj CMakeFiles/ing1_quoridor_2024_groupe12_8.dir/MAIN_-_main/Menu.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32  -luser32  -lgdi32  -lwinspool  -lshell32  -lole32  -loleaut32  -luuid  -lcomdlg32  -ladvapi32  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\ing1_quoridor_2024_groupe12_8.dir
