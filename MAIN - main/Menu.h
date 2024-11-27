@@ -56,7 +56,9 @@ typedef struct {
 
 // Déclarations des fonctions
 int afficherMenu();
-
-void nouvellePartie (char plateau[SIZE][SIZE][4], GameState *state, Joueurs pseudos[], int *GameMode);
+void afficherAide();
+void nouvellePartie (char plateau[SIZE][SIZE][4], int *x1, int *y1, int *x2, int *y2,
+                       int *x3, int *y3, int *x4, int *y4, GameState *state, Joueurs pseudos[],
+                       Joueurs scores[], int *nbScores, int *GameMode);
 
 #endif // HEADER_H
